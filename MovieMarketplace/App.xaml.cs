@@ -4,7 +4,6 @@ namespace MovieMarketplace
 {
     public partial class App : Application
     {
-        // Ambele sunt acum 'settable' pentru a elimina eroarea CS0200
         public static Window? m_window { get; set; }
         public static Window? MainWindow { get; set; }
 

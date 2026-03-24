@@ -32,8 +32,8 @@ namespace MovieMarketplace.Repositories
                             Status = EquipmentStatus.Available,
                             Description = reader.IsDBNull(5) ? "" : reader.GetString(5),
                             ImageUrl = reader.IsDBNull(6) ? "" : reader.GetString(6),
-                            Category = reader.IsDBNull(7) ? "" : reader.GetString(7), // NOU
-                            Condition = reader.IsDBNull(8) ? "" : reader.GetString(8)  // NOU
+                            Category = reader.IsDBNull(7) ? "" : reader.GetString(7), 
+                            Condition = reader.IsDBNull(8) ? "" : reader.GetString(8)  
                         });
                     }
                 }

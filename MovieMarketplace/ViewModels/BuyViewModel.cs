@@ -14,11 +14,10 @@ namespace MovieMarketplace.ViewModels
             {
                 _selectedItem = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CanPurchase)); // Notificăm UI-ul când se schimbă item-ul
+                OnPropertyChanged(nameof(CanPurchase)); 
             }
         }
 
-        // Logica centralizată pentru butonul de cumpărare
         public bool CanPurchase
         {
             get
