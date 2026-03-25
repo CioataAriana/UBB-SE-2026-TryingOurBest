@@ -105,7 +105,7 @@ namespace MovieShop.Repositories
                     // 3. Creăm înregistrarea în tabelul Transactions
                     // NOTA: Am adăugat SELECT-ul pentru a prelua automat SellerID-ul din tabelul Equipment
                     // 3. Creăm înregistrarea în tabelul Transactions
-                    // Am adăugat coloanele 'Type' și 'Timestamp' (folosind funcția GETDATE())
+                    
                     string logTrans = @"INSERT INTO Transactions (BuyerID, SellerID, EquipmentID, Amount, Status, ShippingAddress, Type, Timestamp) 
                                     SELECT @bid, SellerID, ID, @price, 'Completed', @addr, 'Marketplace', GETDATE()
                                      FROM Equipment WHERE ID = @eid";
@@ -123,7 +123,7 @@ namespace MovieShop.Repositories
                 {
                     sqlTrans.Rollback();
                     System.Diagnostics.Debug.WriteLine("Tranzacție eșuată: " + ex.Message);
-                    throw; // Aruncăm eroarea mai departe pentru a o afișa în UI
+                    throw;
                 }
             }
         }
