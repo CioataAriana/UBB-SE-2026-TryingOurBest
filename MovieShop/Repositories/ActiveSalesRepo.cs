@@ -8,7 +8,8 @@ namespace MovieShop.Repositories
 {
     internal class ActiveSalesRepo
     {
-        private string connString = @"Server=(localdb)\MSSQLLocalDB;Database=MovieShopDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        DatabaseSingleton _db = DatabaseSingleton.Instance;
+
         public List<ActiveSale> GetCurrentSales()
         {
             List<ActiveSale> sales = new List<ActiveSale>();
@@ -19,31 +20,29 @@ namespace MovieShop.Repositories
                             WHERE s.StartTime <= GETDATE() AND s.EndTime > GETDATE()
                             ORDER BY s.EndTime ASC";
 
-            using (SqlConnection conn = new SqlConnection(connString))
+            
+            SqlCommand cmd = new SqlCommand(query, _db.Connection);
+            _db.OpenConnection();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while(reader.Read())
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                conn.Open();
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while(reader.Read())
+                sales.Add(new ActiveSale
                 {
-                    sales.Add(new ActiveSale
+                    ID = (int)reader["ID"],
+                    DiscountPercentage = (decimal)reader["DiscountPercentage"],
+                    EndTime = (DateTime)reader["EndTime"],
+                    Movie = new Movie
                     {
-                        ID = (int)reader["ID"],
-                        DiscountPercentage = (decimal)reader["DiscountPercentage"],
-                        EndTime = (DateTime)reader["EndTime"],
-                        Movie = new Movie
-                        {
-                            ID = (int)reader["MovieID"],
-                            Title = reader["Title"].ToString(),
-                            Price = (decimal)reader["Price"]
-                        }
-                    });
-                }
+                        ID = (int)reader["MovieID"],
+                        Title = reader["Title"].ToString() ?? "<no title>",
+                        Price = (decimal)reader["Price"]
+                    }
+                });
             }
 
+            _db.CloseConnection();
             return sales;
         }
     }
