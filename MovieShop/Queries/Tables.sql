@@ -65,7 +65,7 @@ CREATE TABLE Reviews
     ID         INT            NOT NULL    IDENTITY(1, 1)  PRIMARY KEY,
     MovieID    INT            NOT NULL    REFERENCES Movies(ID),
     UserID     INT            NOT NULL    REFERENCES Users(ID),
-    StarRating INT            NOT NULL,
+    StarRating DECIMAL(3, 1)  NOT NULL,
     Comment    NVARCHAR(MAX)  NULL,
     CreatedAt  DATETIME       NOT NULL    DEFAULT GETDATE()
 );

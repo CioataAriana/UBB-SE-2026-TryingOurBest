@@ -1,3 +1,4 @@
+--DELETE FROM Events;
 --DELETE FROM Reviews;
 --DELETE FROM Transactions;
 --DELETE FROM Equipment;
@@ -6,6 +7,7 @@
 --DELETE FROM Movies;
 --DELETE FROM OwnedMovies;
 
+--DBCC CHECKIDENT('Events', RESEED, 0) WITH NO_INFOMSGS;
 --DBCC CHECKIDENT('Movies', RESEED, 0) WITH NO_INFOMSGS;
 --DBCC CHECKIDENT('Equipment', RESEED, 0) WITH NO_INFOMSGS;
 --DBCC CHECKIDENT('ActiveSales', RESEED, 0) WITH NO_INFOMSGS;
@@ -102,6 +104,43 @@ END
 
 DECLARE @Seller1 INT = (SELECT ID FROM Users WHERE Username = 'dummy1');
 DECLARE @Seller2 INT = (SELECT ID FROM Users WHERE Username = 'dummy2');
+
+-- Dummy events for a few movies
+IF NOT EXISTS (SELECT 1 FROM Events WHERE Title = 'Inception - Midnight Screening')
+    INSERT INTO Events (MovieID, Title, Description, Date, Location, TicketPrice, PosterUrl)
+    VALUES (1, 'Inception - Midnight Screening',
+            'One-night-only midnight screening with a short pre-show talk.',
+            DATEADD(day, 7, GETDATE()),
+            'Cinema Hall A',
+            12.50,
+            'https://m.media-amazon.com/images/I/71DwIcSgFcS._AC_UF894,1000_QL80_.jpg');
+
+IF NOT EXISTS (SELECT 1 FROM Events WHERE Title = 'The Matrix - Fan Marathon')
+    INSERT INTO Events (MovieID, Title, Description, Date, Location, TicketPrice, PosterUrl)
+    VALUES (@MatrixID, 'The Matrix - Fan Marathon',
+            'Back-to-back screening + trivia. Doors open 18:00.',
+            DATEADD(day, 14, GETDATE()),
+            'Retro Theater',
+            18.00,
+            'https://m.media-amazon.com/images/I/51EG732BV3L.jpg');
+
+IF NOT EXISTS (SELECT 1 FROM Events WHERE Title = 'Interstellar - Space Night')
+    INSERT INTO Events (MovieID, Title, Description, Date, Location, TicketPrice, PosterUrl)
+    VALUES (@InterstellarID, 'Interstellar - Space Night',
+            'Screening followed by a small astronomy Q&A.',
+            DATEADD(day, 21, GETDATE()),
+            'Science Center Auditorium',
+            15.00,
+            'https://m.media-amazon.com/images/I/91vIHsL-zjL._AC_UF894,1000_QL80_.jpg');
+
+IF NOT EXISTS (SELECT 1 FROM Events WHERE Title = 'Whiplash - Live Jazz Intro')
+    INSERT INTO Events (MovieID, Title, Description, Date, Location, TicketPrice, PosterUrl)
+    VALUES (@WhiplashID, 'Whiplash - Live Jazz Intro',
+            'Short live jazz set before the movie.',
+            DATEADD(day, 10, GETDATE()),
+            'Downtown Arts Cinema',
+            14.00,
+            'https://m.media-amazon.com/images/I/81hKZ6oTqUL._AC_UF894,1000_QL80_.jpg');
 
 -- Reviews for the 5 inserted movies (rating is later averaged into Movies.Rating)
 IF NOT EXISTS (SELECT 1 FROM Reviews WHERE MovieID = @MatrixID AND UserID = @Seller1)

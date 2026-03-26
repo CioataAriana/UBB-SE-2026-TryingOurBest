@@ -173,7 +173,7 @@ namespace MovieShop.Repositories
                 return;
 
             var ids = movies.Select(m => m.ID).Distinct().ToList();
-            var ratingsByMovieId = new Dictionary<int, List<int>>();
+            var ratingsByMovieId = new Dictionary<int, List<decimal>>();
 
             // Fetch raw review stars; compute averages in code (no AVG/COUNT in SQL).
             var paramNames = ids.Select((_, i) => $"@id{i}").ToArray();
@@ -194,7 +194,7 @@ namespace MovieShop.Repositories
                     var star = reader.GetInt32(1);
 
                     if (!ratingsByMovieId.TryGetValue(movieId, out var list))
-                        ratingsByMovieId[movieId] = list = new List<int>();
+                        ratingsByMovieId[movieId] = list = new List<decimal>();
 
                     list.Add(star);
                 }
@@ -207,7 +207,7 @@ namespace MovieShop.Repositories
             foreach (var m in movies)
             {
                 if (ratingsByMovieId.TryGetValue(m.ID, out var stars) && stars.Count > 0)
-                    m.Rating = stars.Average();
+                    m.Rating = stars.Average(s => (double)s);
                 else
                     m.Rating = 0;
             }

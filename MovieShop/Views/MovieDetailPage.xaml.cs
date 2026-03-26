@@ -51,6 +51,8 @@ public sealed partial class MovieDetailPage : Page
         TrySetPoster(_movie.ImageUrl);
 
         RefreshBuyButtonState();
+
+        ToolTipService.SetToolTip(ReviewsButton, BuildStarDistributionTooltip(_movie.ID));
     }
 
     private void UpdatePriceDisplay()
@@ -193,37 +195,34 @@ public sealed partial class MovieDetailPage : Page
         }
     }
 
-    private async void ReviewsButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void ReviewsButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         if (_movie == null)
             return;
 
-        var reviewCount = GetReviewCount(_movie.ID);
-        var peopleText = reviewCount == 1 ? "1 person" : $"{reviewCount} people";
+        if (_mainVm == null)
+            return;
 
-        var dialog = new ContentDialog
+        Frame?.Navigate(typeof(MovieReviewsPage), new MovieReviewsNavArgs
         {
-            Title = "Reviews",
-            Content = $"\"{_movie.Title}\" was reviewed by {peopleText}.",
-            PrimaryButtonText = "Close",
-            XamlRoot = XamlRoot
-        };
-        _ = await dialog.ShowAsync();
+            Movie = _movie,
+            MainViewModel = _mainVm
+        });
     }
 
-    private async void EventsButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void EventsButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         if (_movie == null)
             return;
 
-        var dialog = new ContentDialog
+        if (_mainVm == null)
+            return;
+
+        Frame?.Navigate(typeof(MovieEventsPage), new MovieEventsNavArgs
         {
-            Title = "Related upcoming events",
-            Content = $"Upcoming events linked to \"{_movie.Title}\" will be shown here (REQ-01 — Events integration).",
-            PrimaryButtonText = "Close",
-            XamlRoot = XamlRoot
-        };
-        _ = await dialog.ShowAsync();
+            Movie = _movie,
+            MainViewModel = _mainVm
+        });
     }
 
     private void BackButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -263,5 +262,43 @@ public sealed partial class MovieDetailPage : Page
         {
             db.CloseConnection();
         }
+    }
+
+    private static string BuildStarDistributionTooltip(int movieId)
+    {
+        var counts = new int[11]; // 0..10
+
+        var db = DatabaseSingleton.Instance;
+        db.OpenConnection();
+        try
+        {
+            const string query = @"SELECT StarRating FROM Reviews WHERE MovieID = @mid";
+            using var cmd = new SqlCommand(query, db.Connection);
+            cmd.Parameters.AddWithValue("@mid", movieId);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var rating = reader.GetInt32(0);
+                var bucket = (int)decimal.Floor(rating);
+                if (bucket < 1) bucket = 1;
+                if (bucket > 10) bucket = 10;
+                counts[bucket]++;
+            }
+        }
+        finally
+        {
+            db.CloseConnection();
+        }
+
+        var total = 0;
+        for (var i = 1; i <= 10; i++) total += counts[i];
+        if (total == 0) return "No reviews yet.";
+
+        var lines = new List<string> { "Rating distribution:" };
+        for (var i = 10; i >= 1; i--)
+            lines.Add($"{i}: {counts[i]}");
+
+        return string.Join("\n", lines);
     }
 }

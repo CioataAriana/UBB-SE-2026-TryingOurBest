@@ -7,6 +7,8 @@ Views\MainPage.xbf
 Views\MarketplacePage.xbf
 Views\MovieCatalogPage.xbf
 Views\MovieDetailPage.xbf
+Views\MovieEventsPage.xbf
+Views\MovieReviewsPage.xbf
 Views\MovieShopView.xbf
 Views\NavigationPage.xbf
 Views\SellPage.xbf

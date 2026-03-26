@@ -370,3 +370,13 @@ C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\
 C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieCatalogPage.xaml
 C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieDetailPage.xbf
 C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieCatalogPage.xbf
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieEventsPage.xbf
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieReviewsPage.xbf
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieEventsPage.g.i.cs
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieEventsPage.g.cs
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieReviewsPage.g.i.cs
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieReviewsPage.g.cs
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieEventsPage.xaml
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieReviewsPage.xaml
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieEventsPage.xbf
+C:\Users\marius\source\repos\SE_Movies\UBB-SE-2026-VibeCoders\MovieShop\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\MovieReviewsPage.xbf

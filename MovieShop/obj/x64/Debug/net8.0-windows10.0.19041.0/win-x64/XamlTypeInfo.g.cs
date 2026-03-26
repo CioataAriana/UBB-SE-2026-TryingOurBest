@@ -226,7 +226,7 @@ namespace MovieShop.MovieShop_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[74];
+            _typeNameTable = new string[76];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -250,59 +250,61 @@ namespace MovieShop.MovieShop_XamlTypeInfo
             _typeNameTable[20] = "MovieShop.Views.BoolToVisibilityConverter";
             _typeNameTable[21] = "MovieShop.Views.MovieCatalogPage";
             _typeNameTable[22] = "MovieShop.Views.MovieDetailPage";
-            _typeNameTable[23] = "MovieShop.Views.MovieShopView";
-            _typeNameTable[24] = "MovieShop.ViewModels.MainViewModel";
-            _typeNameTable[25] = "MovieShop.Models.Movie";
-            _typeNameTable[26] = "MovieShop.Views.NavigationPage";
-            _typeNameTable[27] = "MovieShop.Views.SellPage";
-            _typeNameTable[28] = "MovieShop.ViewModels.SellEquipmentViewModel";
-            _typeNameTable[29] = "MovieShop.Views.StartPageEquipment";
-            _typeNameTable[30] = "CommunityToolkit.WinUI.UI.Controls.DataGrid";
-            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[32] = "System.Collections.IEnumerable";
-            _typeNameTable[33] = "CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility";
-            _typeNameTable[34] = "System.Collections.ObjectModel.ObservableCollection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>";
-            _typeNameTable[35] = "System.Collections.ObjectModel.Collection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>";
-            _typeNameTable[36] = "CommunityToolkit.WinUI.UI.Controls.DataGridColumn";
-            _typeNameTable[37] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[38] = "Double";
-            _typeNameTable[39] = "Microsoft.UI.Xaml.Style";
-            _typeNameTable[40] = "Microsoft.UI.Xaml.Data.Binding";
-            _typeNameTable[41] = "Int32";
-            _typeNameTable[42] = "System.Nullable`1<CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>";
-            _typeNameTable[43] = "CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection";
-            _typeNameTable[44] = "Microsoft.UI.Xaml.Visibility";
-            _typeNameTable[45] = "CommunityToolkit.WinUI.UI.Controls.DataGridLength";
-            _typeNameTable[46] = "Microsoft.UI.Xaml.Media.Brush";
-            _typeNameTable[47] = "CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode";
-            _typeNameTable[48] = "CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility";
-            _typeNameTable[49] = "Microsoft.UI.Xaml.Controls.ScrollBarVisibility";
-            _typeNameTable[50] = "Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger";
-            _typeNameTable[51] = "Microsoft.UI.Xaml.DataTemplate";
-            _typeNameTable[52] = "CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode";
-            _typeNameTable[53] = "CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode";
-            _typeNameTable[54] = "String";
-            _typeNameTable[55] = "System.Collections.ObjectModel.ObservableCollection`1<Microsoft.UI.Xaml.Style>";
-            _typeNameTable[56] = "System.Collections.ObjectModel.Collection`1<Microsoft.UI.Xaml.Style>";
-            _typeNameTable[57] = "System.Collections.IList";
-            _typeNameTable[58] = "CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn";
-            _typeNameTable[59] = "CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn";
-            _typeNameTable[60] = "Microsoft.UI.Xaml.Media.FontFamily";
-            _typeNameTable[61] = "Windows.UI.Text.FontStyle";
-            _typeNameTable[62] = "Windows.UI.Text.FontWeight";
-            _typeNameTable[63] = "Microsoft.UI.Xaml.Controls.NumberBox";
-            _typeNameTable[64] = "Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode";
-            _typeNameTable[65] = "Windows.Globalization.NumberFormatting.INumberFormatter2";
-            _typeNameTable[66] = "Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase";
-            _typeNameTable[67] = "Microsoft.UI.Xaml.Media.SolidColorBrush";
-            _typeNameTable[68] = "Microsoft.UI.Xaml.TextReadingOrder";
-            _typeNameTable[69] = "Microsoft.UI.Xaml.Controls.NumberBoxValidationMode";
-            _typeNameTable[70] = "MovieShop.Views.WalletView";
-            _typeNameTable[71] = "MovieShop.ViewModels.WalletViewModel";
-            _typeNameTable[72] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[73] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[23] = "MovieShop.Views.MovieEventsPage";
+            _typeNameTable[24] = "MovieShop.Views.MovieReviewsPage";
+            _typeNameTable[25] = "MovieShop.Views.MovieShopView";
+            _typeNameTable[26] = "MovieShop.ViewModels.MainViewModel";
+            _typeNameTable[27] = "MovieShop.Models.Movie";
+            _typeNameTable[28] = "MovieShop.Views.NavigationPage";
+            _typeNameTable[29] = "MovieShop.Views.SellPage";
+            _typeNameTable[30] = "MovieShop.ViewModels.SellEquipmentViewModel";
+            _typeNameTable[31] = "MovieShop.Views.StartPageEquipment";
+            _typeNameTable[32] = "CommunityToolkit.WinUI.UI.Controls.DataGrid";
+            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[34] = "System.Collections.IEnumerable";
+            _typeNameTable[35] = "CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility";
+            _typeNameTable[36] = "System.Collections.ObjectModel.ObservableCollection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>";
+            _typeNameTable[37] = "System.Collections.ObjectModel.Collection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>";
+            _typeNameTable[38] = "CommunityToolkit.WinUI.UI.Controls.DataGridColumn";
+            _typeNameTable[39] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[40] = "Double";
+            _typeNameTable[41] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Data.Binding";
+            _typeNameTable[43] = "Int32";
+            _typeNameTable[44] = "System.Nullable`1<CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>";
+            _typeNameTable[45] = "CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection";
+            _typeNameTable[46] = "Microsoft.UI.Xaml.Visibility";
+            _typeNameTable[47] = "CommunityToolkit.WinUI.UI.Controls.DataGridLength";
+            _typeNameTable[48] = "Microsoft.UI.Xaml.Media.Brush";
+            _typeNameTable[49] = "CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode";
+            _typeNameTable[50] = "CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility";
+            _typeNameTable[51] = "Microsoft.UI.Xaml.Controls.ScrollBarVisibility";
+            _typeNameTable[52] = "Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger";
+            _typeNameTable[53] = "Microsoft.UI.Xaml.DataTemplate";
+            _typeNameTable[54] = "CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode";
+            _typeNameTable[55] = "CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode";
+            _typeNameTable[56] = "String";
+            _typeNameTable[57] = "System.Collections.ObjectModel.ObservableCollection`1<Microsoft.UI.Xaml.Style>";
+            _typeNameTable[58] = "System.Collections.ObjectModel.Collection`1<Microsoft.UI.Xaml.Style>";
+            _typeNameTable[59] = "System.Collections.IList";
+            _typeNameTable[60] = "CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn";
+            _typeNameTable[61] = "CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn";
+            _typeNameTable[62] = "Microsoft.UI.Xaml.Media.FontFamily";
+            _typeNameTable[63] = "Windows.UI.Text.FontStyle";
+            _typeNameTable[64] = "Windows.UI.Text.FontWeight";
+            _typeNameTable[65] = "Microsoft.UI.Xaml.Controls.NumberBox";
+            _typeNameTable[66] = "Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode";
+            _typeNameTable[67] = "Windows.Globalization.NumberFormatting.INumberFormatter2";
+            _typeNameTable[68] = "Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase";
+            _typeNameTable[69] = "Microsoft.UI.Xaml.Media.SolidColorBrush";
+            _typeNameTable[70] = "Microsoft.UI.Xaml.TextReadingOrder";
+            _typeNameTable[71] = "Microsoft.UI.Xaml.Controls.NumberBoxValidationMode";
+            _typeNameTable[72] = "MovieShop.Views.WalletView";
+            _typeNameTable[73] = "MovieShop.ViewModels.WalletViewModel";
+            _typeNameTable[74] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[75] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
 
-            _typeTable = new global::System.Type[74];
+            _typeTable = new global::System.Type[76];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -326,57 +328,59 @@ namespace MovieShop.MovieShop_XamlTypeInfo
             _typeTable[20] = typeof(global::MovieShop.Views.BoolToVisibilityConverter);
             _typeTable[21] = typeof(global::MovieShop.Views.MovieCatalogPage);
             _typeTable[22] = typeof(global::MovieShop.Views.MovieDetailPage);
-            _typeTable[23] = typeof(global::MovieShop.Views.MovieShopView);
-            _typeTable[24] = typeof(global::MovieShop.ViewModels.MainViewModel);
-            _typeTable[25] = typeof(global::MovieShop.Models.Movie);
-            _typeTable[26] = typeof(global::MovieShop.Views.NavigationPage);
-            _typeTable[27] = typeof(global::MovieShop.Views.SellPage);
-            _typeTable[28] = typeof(global::MovieShop.ViewModels.SellEquipmentViewModel);
-            _typeTable[29] = typeof(global::MovieShop.Views.StartPageEquipment);
-            _typeTable[30] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGrid);
-            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[32] = typeof(global::System.Collections.IEnumerable);
-            _typeTable[33] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility);
-            _typeTable[34] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>);
-            _typeTable[35] = typeof(global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>);
-            _typeTable[36] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn);
-            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[38] = typeof(global::System.Double);
-            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.Style);
-            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Data.Binding);
-            _typeTable[41] = typeof(global::System.Int32);
-            _typeTable[42] = typeof(global::System.Nullable<global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>);
-            _typeTable[43] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection);
-            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Visibility);
-            _typeTable[45] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridLength);
-            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Media.Brush);
-            _typeTable[47] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode);
-            _typeTable[48] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility);
-            _typeTable[49] = typeof(global::Microsoft.UI.Xaml.Controls.ScrollBarVisibility);
-            _typeTable[50] = typeof(global::Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger);
-            _typeTable[51] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
-            _typeTable[52] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode);
-            _typeTable[53] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode);
-            _typeTable[54] = typeof(global::System.String);
-            _typeTable[55] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>);
-            _typeTable[56] = typeof(global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>);
-            _typeTable[57] = typeof(global::System.Collections.IList);
-            _typeTable[58] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn);
-            _typeTable[59] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn);
-            _typeTable[60] = typeof(global::Microsoft.UI.Xaml.Media.FontFamily);
-            _typeTable[61] = typeof(global::Windows.UI.Text.FontStyle);
-            _typeTable[62] = typeof(global::Windows.UI.Text.FontWeight);
-            _typeTable[63] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBox);
-            _typeTable[64] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode);
-            _typeTable[65] = typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2);
-            _typeTable[66] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase);
-            _typeTable[67] = typeof(global::Microsoft.UI.Xaml.Media.SolidColorBrush);
-            _typeTable[68] = typeof(global::Microsoft.UI.Xaml.TextReadingOrder);
-            _typeTable[69] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode);
-            _typeTable[70] = typeof(global::MovieShop.Views.WalletView);
-            _typeTable[71] = typeof(global::MovieShop.ViewModels.WalletViewModel);
-            _typeTable[72] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[73] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[23] = typeof(global::MovieShop.Views.MovieEventsPage);
+            _typeTable[24] = typeof(global::MovieShop.Views.MovieReviewsPage);
+            _typeTable[25] = typeof(global::MovieShop.Views.MovieShopView);
+            _typeTable[26] = typeof(global::MovieShop.ViewModels.MainViewModel);
+            _typeTable[27] = typeof(global::MovieShop.Models.Movie);
+            _typeTable[28] = typeof(global::MovieShop.Views.NavigationPage);
+            _typeTable[29] = typeof(global::MovieShop.Views.SellPage);
+            _typeTable[30] = typeof(global::MovieShop.ViewModels.SellEquipmentViewModel);
+            _typeTable[31] = typeof(global::MovieShop.Views.StartPageEquipment);
+            _typeTable[32] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGrid);
+            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[34] = typeof(global::System.Collections.IEnumerable);
+            _typeTable[35] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility);
+            _typeTable[36] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>);
+            _typeTable[37] = typeof(global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>);
+            _typeTable[38] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn);
+            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[40] = typeof(global::System.Double);
+            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Data.Binding);
+            _typeTable[43] = typeof(global::System.Int32);
+            _typeTable[44] = typeof(global::System.Nullable<global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>);
+            _typeTable[45] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection);
+            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Visibility);
+            _typeTable[47] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridLength);
+            _typeTable[48] = typeof(global::Microsoft.UI.Xaml.Media.Brush);
+            _typeTable[49] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode);
+            _typeTable[50] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility);
+            _typeTable[51] = typeof(global::Microsoft.UI.Xaml.Controls.ScrollBarVisibility);
+            _typeTable[52] = typeof(global::Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger);
+            _typeTable[53] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
+            _typeTable[54] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode);
+            _typeTable[55] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode);
+            _typeTable[56] = typeof(global::System.String);
+            _typeTable[57] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>);
+            _typeTable[58] = typeof(global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>);
+            _typeTable[59] = typeof(global::System.Collections.IList);
+            _typeTable[60] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn);
+            _typeTable[61] = typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn);
+            _typeTable[62] = typeof(global::Microsoft.UI.Xaml.Media.FontFamily);
+            _typeTable[63] = typeof(global::Windows.UI.Text.FontStyle);
+            _typeTable[64] = typeof(global::Windows.UI.Text.FontWeight);
+            _typeTable[65] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBox);
+            _typeTable[66] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode);
+            _typeTable[67] = typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2);
+            _typeTable[68] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase);
+            _typeTable[69] = typeof(global::Microsoft.UI.Xaml.Media.SolidColorBrush);
+            _typeTable[70] = typeof(global::Microsoft.UI.Xaml.TextReadingOrder);
+            _typeTable[71] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode);
+            _typeTable[72] = typeof(global::MovieShop.Views.WalletView);
+            _typeTable[73] = typeof(global::MovieShop.ViewModels.WalletViewModel);
+            _typeTable[74] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[75] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -422,22 +426,24 @@ namespace MovieShop.MovieShop_XamlTypeInfo
         private object Activate_20_BoolToVisibilityConverter() { return new global::MovieShop.Views.BoolToVisibilityConverter(); }
         private object Activate_21_MovieCatalogPage() { return new global::MovieShop.Views.MovieCatalogPage(); }
         private object Activate_22_MovieDetailPage() { return new global::MovieShop.Views.MovieDetailPage(); }
-        private object Activate_23_MovieShopView() { return new global::MovieShop.Views.MovieShopView(); }
-        private object Activate_24_MainViewModel() { return new global::MovieShop.ViewModels.MainViewModel(); }
-        private object Activate_25_Movie() { return new global::MovieShop.Models.Movie(); }
-        private object Activate_26_NavigationPage() { return new global::MovieShop.Views.NavigationPage(); }
-        private object Activate_27_SellPage() { return new global::MovieShop.Views.SellPage(); }
-        private object Activate_28_SellEquipmentViewModel() { return new global::MovieShop.ViewModels.SellEquipmentViewModel(); }
-        private object Activate_29_StartPageEquipment() { return new global::MovieShop.Views.StartPageEquipment(); }
-        private object Activate_30_DataGrid() { return new global::CommunityToolkit.WinUI.UI.Controls.DataGrid(); }
-        private object Activate_34_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>(); }
-        private object Activate_35_Collection() { return new global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>(); }
-        private object Activate_55_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>(); }
-        private object Activate_56_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>(); }
-        private object Activate_58_DataGridTextColumn() { return new global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn(); }
-        private object Activate_63_NumberBox() { return new global::Microsoft.UI.Xaml.Controls.NumberBox(); }
-        private object Activate_70_WalletView() { return new global::MovieShop.Views.WalletView(); }
-        private object Activate_72_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_23_MovieEventsPage() { return new global::MovieShop.Views.MovieEventsPage(); }
+        private object Activate_24_MovieReviewsPage() { return new global::MovieShop.Views.MovieReviewsPage(); }
+        private object Activate_25_MovieShopView() { return new global::MovieShop.Views.MovieShopView(); }
+        private object Activate_26_MainViewModel() { return new global::MovieShop.ViewModels.MainViewModel(); }
+        private object Activate_27_Movie() { return new global::MovieShop.Models.Movie(); }
+        private object Activate_28_NavigationPage() { return new global::MovieShop.Views.NavigationPage(); }
+        private object Activate_29_SellPage() { return new global::MovieShop.Views.SellPage(); }
+        private object Activate_30_SellEquipmentViewModel() { return new global::MovieShop.ViewModels.SellEquipmentViewModel(); }
+        private object Activate_31_StartPageEquipment() { return new global::MovieShop.Views.StartPageEquipment(); }
+        private object Activate_32_DataGrid() { return new global::CommunityToolkit.WinUI.UI.Controls.DataGrid(); }
+        private object Activate_36_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>(); }
+        private object Activate_37_Collection() { return new global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>(); }
+        private object Activate_57_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>(); }
+        private object Activate_58_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>(); }
+        private object Activate_60_DataGridTextColumn() { return new global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn(); }
+        private object Activate_65_NumberBox() { return new global::Microsoft.UI.Xaml.Controls.NumberBox(); }
+        private object Activate_72_WalletView() { return new global::MovieShop.Views.WalletView(); }
+        private object Activate_74_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_MicaBackdrop() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Media.MicaBackdrop).TypeHandle);
         private void StaticInitializer_6_MicaKind() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Composition.SystemBackdrops.MicaKind).TypeHandle);
@@ -454,41 +460,43 @@ namespace MovieShop.MovieShop_XamlTypeInfo
         private void StaticInitializer_20_BoolToVisibilityConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.BoolToVisibilityConverter).TypeHandle);
         private void StaticInitializer_21_MovieCatalogPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieCatalogPage).TypeHandle);
         private void StaticInitializer_22_MovieDetailPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieDetailPage).TypeHandle);
-        private void StaticInitializer_23_MovieShopView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieShopView).TypeHandle);
-        private void StaticInitializer_24_MainViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.MainViewModel).TypeHandle);
-        private void StaticInitializer_25_Movie() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Models.Movie).TypeHandle);
-        private void StaticInitializer_26_NavigationPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.NavigationPage).TypeHandle);
-        private void StaticInitializer_27_SellPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.SellPage).TypeHandle);
-        private void StaticInitializer_28_SellEquipmentViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.SellEquipmentViewModel).TypeHandle);
-        private void StaticInitializer_29_StartPageEquipment() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.StartPageEquipment).TypeHandle);
-        private void StaticInitializer_30_DataGrid() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGrid).TypeHandle);
-        private void StaticInitializer_32_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.IEnumerable).TypeHandle);
-        private void StaticInitializer_33_DataGridGridLinesVisibility() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility).TypeHandle);
-        private void StaticInitializer_34_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>).TypeHandle);
-        private void StaticInitializer_35_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>).TypeHandle);
-        private void StaticInitializer_36_DataGridColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn).TypeHandle);
-        private void StaticInitializer_42_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>).TypeHandle);
-        private void StaticInitializer_43_DataGridSortDirection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection).TypeHandle);
-        private void StaticInitializer_45_DataGridLength() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridLength).TypeHandle);
-        private void StaticInitializer_47_DataGridClipboardCopyMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode).TypeHandle);
-        private void StaticInitializer_48_DataGridHeadersVisibility() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility).TypeHandle);
-        private void StaticInitializer_52_DataGridRowDetailsVisibilityMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode).TypeHandle);
-        private void StaticInitializer_53_DataGridSelectionMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode).TypeHandle);
-        private void StaticInitializer_55_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>).TypeHandle);
-        private void StaticInitializer_56_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>).TypeHandle);
-        private void StaticInitializer_57_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.IList).TypeHandle);
-        private void StaticInitializer_58_DataGridTextColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn).TypeHandle);
-        private void StaticInitializer_59_DataGridBoundColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn).TypeHandle);
-        private void StaticInitializer_61_FontStyle() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontStyle).TypeHandle);
-        private void StaticInitializer_62_FontWeight() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontWeight).TypeHandle);
-        private void StaticInitializer_63_NumberBox() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBox).TypeHandle);
-        private void StaticInitializer_64_NumberBoxSpinButtonPlacementMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode).TypeHandle);
-        private void StaticInitializer_65_INumberFormatter2() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2).TypeHandle);
-        private void StaticInitializer_69_NumberBoxValidationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode).TypeHandle);
-        private void StaticInitializer_70_WalletView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.WalletView).TypeHandle);
-        private void StaticInitializer_71_WalletViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.WalletViewModel).TypeHandle);
-        private void StaticInitializer_72_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_73_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_23_MovieEventsPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieEventsPage).TypeHandle);
+        private void StaticInitializer_24_MovieReviewsPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieReviewsPage).TypeHandle);
+        private void StaticInitializer_25_MovieShopView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.MovieShopView).TypeHandle);
+        private void StaticInitializer_26_MainViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.MainViewModel).TypeHandle);
+        private void StaticInitializer_27_Movie() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Models.Movie).TypeHandle);
+        private void StaticInitializer_28_NavigationPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.NavigationPage).TypeHandle);
+        private void StaticInitializer_29_SellPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.SellPage).TypeHandle);
+        private void StaticInitializer_30_SellEquipmentViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.SellEquipmentViewModel).TypeHandle);
+        private void StaticInitializer_31_StartPageEquipment() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.StartPageEquipment).TypeHandle);
+        private void StaticInitializer_32_DataGrid() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGrid).TypeHandle);
+        private void StaticInitializer_34_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.IEnumerable).TypeHandle);
+        private void StaticInitializer_35_DataGridGridLinesVisibility() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility).TypeHandle);
+        private void StaticInitializer_36_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>).TypeHandle);
+        private void StaticInitializer_37_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>).TypeHandle);
+        private void StaticInitializer_38_DataGridColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn).TypeHandle);
+        private void StaticInitializer_44_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>).TypeHandle);
+        private void StaticInitializer_45_DataGridSortDirection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection).TypeHandle);
+        private void StaticInitializer_47_DataGridLength() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridLength).TypeHandle);
+        private void StaticInitializer_49_DataGridClipboardCopyMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode).TypeHandle);
+        private void StaticInitializer_50_DataGridHeadersVisibility() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility).TypeHandle);
+        private void StaticInitializer_54_DataGridRowDetailsVisibilityMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode).TypeHandle);
+        private void StaticInitializer_55_DataGridSelectionMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode).TypeHandle);
+        private void StaticInitializer_57_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Microsoft.UI.Xaml.Style>).TypeHandle);
+        private void StaticInitializer_58_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Microsoft.UI.Xaml.Style>).TypeHandle);
+        private void StaticInitializer_59_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.IList).TypeHandle);
+        private void StaticInitializer_60_DataGridTextColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn).TypeHandle);
+        private void StaticInitializer_61_DataGridBoundColumn() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn).TypeHandle);
+        private void StaticInitializer_63_FontStyle() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontStyle).TypeHandle);
+        private void StaticInitializer_64_FontWeight() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontWeight).TypeHandle);
+        private void StaticInitializer_65_NumberBox() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBox).TypeHandle);
+        private void StaticInitializer_66_NumberBoxSpinButtonPlacementMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode).TypeHandle);
+        private void StaticInitializer_67_INumberFormatter2() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2).TypeHandle);
+        private void StaticInitializer_71_NumberBoxValidationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode).TypeHandle);
+        private void StaticInitializer_72_WalletView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.Views.WalletView).TypeHandle);
+        private void StaticInitializer_73_WalletViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::MovieShop.ViewModels.WalletViewModel).TypeHandle);
+        private void StaticInitializer_74_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_75_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -496,31 +504,31 @@ namespace MovieShop.MovieShop_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_34_ObservableCollection(object instance, object item)
+        private void VectorAdd_36_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>)instance;
             var newItem = (global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_35_Collection(object instance, object item)
+        private void VectorAdd_37_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn>)instance;
             var newItem = (global::CommunityToolkit.WinUI.UI.Controls.DataGridColumn)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_55_ObservableCollection(object instance, object item)
+        private void VectorAdd_57_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Style>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Style)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_56_Collection(object instance, object item)
+        private void VectorAdd_58_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Style>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Style)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_73_IList(object instance, object item)
+        private void VectorAdd_75_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -692,10 +700,26 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 23:   //  MovieShop.Views.MovieShopView
+            case 23:   //  MovieShop.Views.MovieEventsPage
+                userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_23_MovieEventsPage;
+                userType.StaticInitializer = StaticInitializer_23_MovieEventsPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 24:   //  MovieShop.Views.MovieReviewsPage
+                userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_24_MovieReviewsPage;
+                userType.StaticInitializer = StaticInitializer_24_MovieReviewsPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 25:   //  MovieShop.Views.MovieShopView
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_23_MovieShopView;
-                userType.StaticInitializer = StaticInitializer_23_MovieShopView;
+                userType.Activator = Activate_25_MovieShopView;
+                userType.StaticInitializer = StaticInitializer_25_MovieShopView;
                 userType.AddMemberName("ShowOnlySales");
                 userType.AddMemberName("HostViewModel");
                 userType.AddMemberName("InitialMovie");
@@ -703,60 +727,60 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 24:   //  MovieShop.ViewModels.MainViewModel
+            case 26:   //  MovieShop.ViewModels.MainViewModel
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_24_MainViewModel;
+                userType.StaticInitializer = StaticInitializer_26_MainViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 25:   //  MovieShop.Models.Movie
+            case 27:   //  MovieShop.Models.Movie
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_25_Movie;
+                userType.StaticInitializer = StaticInitializer_27_Movie;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 26:   //  MovieShop.Views.NavigationPage
+            case 28:   //  MovieShop.Views.NavigationPage
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_26_NavigationPage;
-                userType.StaticInitializer = StaticInitializer_26_NavigationPage;
+                userType.Activator = Activate_28_NavigationPage;
+                userType.StaticInitializer = StaticInitializer_28_NavigationPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 27:   //  MovieShop.Views.SellPage
+            case 29:   //  MovieShop.Views.SellPage
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_27_SellPage;
-                userType.StaticInitializer = StaticInitializer_27_SellPage;
+                userType.Activator = Activate_29_SellPage;
+                userType.StaticInitializer = StaticInitializer_29_SellPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 28:   //  MovieShop.ViewModels.SellEquipmentViewModel
+            case 30:   //  MovieShop.ViewModels.SellEquipmentViewModel
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_28_SellEquipmentViewModel;
+                userType.StaticInitializer = StaticInitializer_30_SellEquipmentViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 29:   //  MovieShop.Views.StartPageEquipment
+            case 31:   //  MovieShop.Views.StartPageEquipment
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_29_StartPageEquipment;
-                userType.StaticInitializer = StaticInitializer_29_StartPageEquipment;
+                userType.Activator = Activate_31_StartPageEquipment;
+                userType.StaticInitializer = StaticInitializer_31_StartPageEquipment;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 30:   //  CommunityToolkit.WinUI.UI.Controls.DataGrid
+            case 32:   //  CommunityToolkit.WinUI.UI.Controls.DataGrid
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_30_DataGrid;
-                userType.StaticInitializer = StaticInitializer_30_DataGrid;
+                userType.Activator = Activate_32_DataGrid;
+                userType.StaticInitializer = StaticInitializer_32_DataGrid;
                 userType.AddMemberName("ItemsSource");
                 userType.AddMemberName("AutoGenerateColumns");
                 userType.AddMemberName("IsReadOnly");
@@ -806,20 +830,20 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 31:   //  Microsoft.UI.Xaml.Controls.Control
+            case 33:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 32:   //  System.Collections.IEnumerable
+            case 34:   //  System.Collections.IEnumerable
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_32_IEnumerable;
+                userType.StaticInitializer = StaticInitializer_34_IEnumerable;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 33:   //  CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility
+            case 35:   //  CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_33_DataGridGridLinesVisibility;
+                userType.StaticInitializer = StaticInitializer_35_DataGridGridLinesVisibility;
                 userType.AddEnumValue("None", global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility.None);
                 userType.AddEnumValue("Horizontal", global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility.Horizontal);
                 userType.AddEnumValue("Vertical", global::CommunityToolkit.WinUI.UI.Controls.DataGridGridLinesVisibility.Vertical);
@@ -827,25 +851,25 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 34:   //  System.Collections.ObjectModel.ObservableCollection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>
+            case 36:   //  System.Collections.ObjectModel.ObservableCollection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>"));
-                userType.StaticInitializer = StaticInitializer_34_ObservableCollection;
-                userType.CollectionAdd = VectorAdd_34_ObservableCollection;
+                userType.StaticInitializer = StaticInitializer_36_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_36_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 35:   //  System.Collections.ObjectModel.Collection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>
+            case 37:   //  System.Collections.ObjectModel.Collection`1<CommunityToolkit.WinUI.UI.Controls.DataGridColumn>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_35_Collection;
-                userType.StaticInitializer = StaticInitializer_35_Collection;
-                userType.CollectionAdd = VectorAdd_35_Collection;
+                userType.Activator = Activate_37_Collection;
+                userType.StaticInitializer = StaticInitializer_37_Collection;
+                userType.CollectionAdd = VectorAdd_37_Collection;
                 xamlType = userType;
                 break;
 
-            case 36:   //  CommunityToolkit.WinUI.UI.Controls.DataGridColumn
+            case 38:   //  CommunityToolkit.WinUI.UI.Controls.DataGridColumn
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_36_DataGridColumn;
+                userType.StaticInitializer = StaticInitializer_38_DataGridColumn;
                 userType.AddMemberName("ActualWidth");
                 userType.AddMemberName("CanUserReorder");
                 userType.AddMemberName("CanUserResize");
@@ -868,71 +892,71 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 37:   //  Microsoft.UI.Xaml.DependencyObject
+            case 39:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 38:   //  Double
+            case 40:   //  Double
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 39:   //  Microsoft.UI.Xaml.Style
+            case 41:   //  Microsoft.UI.Xaml.Style
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 40:   //  Microsoft.UI.Xaml.Data.Binding
+            case 42:   //  Microsoft.UI.Xaml.Data.Binding
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 41:   //  Int32
+            case 43:   //  Int32
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 42:   //  System.Nullable`1<CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>
+            case 44:   //  System.Nullable`1<CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetBoxedType(GetXamlTypeByName("CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection"));
                 userType.BoxInstance = userType.BoxType<global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection>;
-                userType.StaticInitializer = StaticInitializer_42_Nullable;
+                userType.StaticInitializer = StaticInitializer_44_Nullable;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 43:   //  CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection
+            case 45:   //  CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_43_DataGridSortDirection;
+                userType.StaticInitializer = StaticInitializer_45_DataGridSortDirection;
                 userType.AddEnumValue("Ascending", global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection.Ascending);
                 userType.AddEnumValue("Descending", global::CommunityToolkit.WinUI.UI.Controls.DataGridSortDirection.Descending);
                 xamlType = userType;
                 break;
 
-            case 44:   //  Microsoft.UI.Xaml.Visibility
+            case 46:   //  Microsoft.UI.Xaml.Visibility
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 45:   //  CommunityToolkit.WinUI.UI.Controls.DataGridLength
+            case 47:   //  CommunityToolkit.WinUI.UI.Controls.DataGridLength
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_45_DataGridLength;
+                userType.StaticInitializer = StaticInitializer_47_DataGridLength;
                 userType.CreateFromStringMethod = x => (global::System.Object)global::CommunityToolkit.WinUI.UI.Controls.DataGridLength.ConvertFromString(x);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 46:   //  Microsoft.UI.Xaml.Media.Brush
+            case 48:   //  Microsoft.UI.Xaml.Media.Brush
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 47:   //  CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode
+            case 49:   //  CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_47_DataGridClipboardCopyMode;
+                userType.StaticInitializer = StaticInitializer_49_DataGridClipboardCopyMode;
                 userType.AddEnumValue("None", global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode.None);
                 userType.AddEnumValue("ExcludeHeader", global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode.ExcludeHeader);
                 userType.AddEnumValue("IncludeHeader", global::CommunityToolkit.WinUI.UI.Controls.DataGridClipboardCopyMode.IncludeHeader);
                 xamlType = userType;
                 break;
 
-            case 48:   //  CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility
+            case 50:   //  CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_48_DataGridHeadersVisibility;
+                userType.StaticInitializer = StaticInitializer_50_DataGridHeadersVisibility;
                 userType.AddEnumValue("None", global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility.None);
                 userType.AddEnumValue("Column", global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility.Column);
                 userType.AddEnumValue("Row", global::CommunityToolkit.WinUI.UI.Controls.DataGridHeadersVisibility.Row);
@@ -940,66 +964,66 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 49:   //  Microsoft.UI.Xaml.Controls.ScrollBarVisibility
+            case 51:   //  Microsoft.UI.Xaml.Controls.ScrollBarVisibility
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 50:   //  Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger
+            case 52:   //  Microsoft.UI.Xaml.Controls.IncrementalLoadingTrigger
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 51:   //  Microsoft.UI.Xaml.DataTemplate
+            case 53:   //  Microsoft.UI.Xaml.DataTemplate
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 52:   //  CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode
+            case 54:   //  CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_52_DataGridRowDetailsVisibilityMode;
+                userType.StaticInitializer = StaticInitializer_54_DataGridRowDetailsVisibilityMode;
                 userType.AddEnumValue("VisibleWhenSelected", global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode.VisibleWhenSelected);
                 userType.AddEnumValue("Visible", global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode.Visible);
                 userType.AddEnumValue("Collapsed", global::CommunityToolkit.WinUI.UI.Controls.DataGridRowDetailsVisibilityMode.Collapsed);
                 xamlType = userType;
                 break;
 
-            case 53:   //  CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode
+            case 55:   //  CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_53_DataGridSelectionMode;
+                userType.StaticInitializer = StaticInitializer_55_DataGridSelectionMode;
                 userType.AddEnumValue("Extended", global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode.Extended);
                 userType.AddEnumValue("Single", global::CommunityToolkit.WinUI.UI.Controls.DataGridSelectionMode.Single);
                 xamlType = userType;
                 break;
 
-            case 54:   //  String
+            case 56:   //  String
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 55:   //  System.Collections.ObjectModel.ObservableCollection`1<Microsoft.UI.Xaml.Style>
+            case 57:   //  System.Collections.ObjectModel.ObservableCollection`1<Microsoft.UI.Xaml.Style>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Microsoft.UI.Xaml.Style>"));
-                userType.StaticInitializer = StaticInitializer_55_ObservableCollection;
-                userType.CollectionAdd = VectorAdd_55_ObservableCollection;
+                userType.StaticInitializer = StaticInitializer_57_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_57_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 56:   //  System.Collections.ObjectModel.Collection`1<Microsoft.UI.Xaml.Style>
+            case 58:   //  System.Collections.ObjectModel.Collection`1<Microsoft.UI.Xaml.Style>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_56_Collection;
-                userType.StaticInitializer = StaticInitializer_56_Collection;
-                userType.CollectionAdd = VectorAdd_56_Collection;
+                userType.Activator = Activate_58_Collection;
+                userType.StaticInitializer = StaticInitializer_58_Collection;
+                userType.CollectionAdd = VectorAdd_58_Collection;
                 xamlType = userType;
                 break;
 
-            case 57:   //  System.Collections.IList
+            case 59:   //  System.Collections.IList
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_57_IList;
+                userType.StaticInitializer = StaticInitializer_59_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 58:   //  CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn
+            case 60:   //  CommunityToolkit.WinUI.UI.Controls.DataGridTextColumn
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn"));
-                userType.Activator = Activate_58_DataGridTextColumn;
-                userType.StaticInitializer = StaticInitializer_58_DataGridTextColumn;
+                userType.Activator = Activate_60_DataGridTextColumn;
+                userType.StaticInitializer = StaticInitializer_60_DataGridTextColumn;
                 userType.AddMemberName("FontFamily");
                 userType.AddMemberName("FontSize");
                 userType.AddMemberName("FontStyle");
@@ -1008,9 +1032,9 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 59:   //  CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn
+            case 61:   //  CommunityToolkit.WinUI.UI.Controls.DataGridBoundColumn
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.WinUI.UI.Controls.DataGridColumn"));
-                userType.StaticInitializer = StaticInitializer_59_DataGridBoundColumn;
+                userType.StaticInitializer = StaticInitializer_61_DataGridBoundColumn;
                 userType.AddMemberName("Binding");
                 userType.AddMemberName("ClipboardContentBinding");
                 userType.AddMemberName("EditingElementStyle");
@@ -1018,30 +1042,30 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 60:   //  Microsoft.UI.Xaml.Media.FontFamily
+            case 62:   //  Microsoft.UI.Xaml.Media.FontFamily
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 61:   //  Windows.UI.Text.FontStyle
+            case 63:   //  Windows.UI.Text.FontStyle
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_61_FontStyle;
+                userType.StaticInitializer = StaticInitializer_63_FontStyle;
                 userType.AddEnumValue("Normal", global::Windows.UI.Text.FontStyle.Normal);
                 userType.AddEnumValue("Oblique", global::Windows.UI.Text.FontStyle.Oblique);
                 userType.AddEnumValue("Italic", global::Windows.UI.Text.FontStyle.Italic);
                 xamlType = userType;
                 break;
 
-            case 62:   //  Windows.UI.Text.FontWeight
+            case 64:   //  Windows.UI.Text.FontWeight
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_62_FontWeight;
+                userType.StaticInitializer = StaticInitializer_64_FontWeight;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 63:   //  Microsoft.UI.Xaml.Controls.NumberBox
+            case 65:   //  Microsoft.UI.Xaml.Controls.NumberBox
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_63_NumberBox;
-                userType.StaticInitializer = StaticInitializer_63_NumberBox;
+                userType.Activator = Activate_65_NumberBox;
+                userType.StaticInitializer = StaticInitializer_65_NumberBox;
                 userType.AddMemberName("PlaceholderText");
                 userType.AddMemberName("Value");
                 userType.AddMemberName("Minimum");
@@ -1064,63 +1088,63 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 64:   //  Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode
+            case 66:   //  Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_64_NumberBoxSpinButtonPlacementMode;
+                userType.StaticInitializer = StaticInitializer_66_NumberBoxSpinButtonPlacementMode;
                 userType.AddEnumValue("Hidden", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Hidden);
                 userType.AddEnumValue("Compact", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Compact);
                 userType.AddEnumValue("Inline", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Inline);
                 xamlType = userType;
                 break;
 
-            case 65:   //  Windows.Globalization.NumberFormatting.INumberFormatter2
+            case 67:   //  Windows.Globalization.NumberFormatting.INumberFormatter2
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_65_INumberFormatter2;
+                userType.StaticInitializer = StaticInitializer_67_INumberFormatter2;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 66:   //  Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase
+            case 68:   //  Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 67:   //  Microsoft.UI.Xaml.Media.SolidColorBrush
+            case 69:   //  Microsoft.UI.Xaml.Media.SolidColorBrush
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 68:   //  Microsoft.UI.Xaml.TextReadingOrder
+            case 70:   //  Microsoft.UI.Xaml.TextReadingOrder
                 xamlType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 69:   //  Microsoft.UI.Xaml.Controls.NumberBoxValidationMode
+            case 71:   //  Microsoft.UI.Xaml.Controls.NumberBoxValidationMode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_69_NumberBoxValidationMode;
+                userType.StaticInitializer = StaticInitializer_71_NumberBoxValidationMode;
                 userType.AddEnumValue("InvalidInputOverwritten", global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode.InvalidInputOverwritten);
                 userType.AddEnumValue("Disabled", global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode.Disabled);
                 xamlType = userType;
                 break;
 
-            case 70:   //  MovieShop.Views.WalletView
+            case 72:   //  MovieShop.Views.WalletView
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_70_WalletView;
-                userType.StaticInitializer = StaticInitializer_70_WalletView;
+                userType.Activator = Activate_72_WalletView;
+                userType.StaticInitializer = StaticInitializer_72_WalletView;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 71:   //  MovieShop.ViewModels.WalletViewModel
+            case 73:   //  MovieShop.ViewModels.WalletViewModel
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_71_WalletViewModel;
+                userType.StaticInitializer = StaticInitializer_73_WalletViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 72:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 74:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_72_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_72_TreeViewNode;
+                userType.Activator = Activate_74_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_74_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -1132,10 +1156,10 @@ namespace MovieShop.MovieShop_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 73:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 75:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::MovieShop.MovieShop_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_73_IList;
-                userType.CollectionAdd = VectorAdd_73_IList;
+                userType.StaticInitializer = StaticInitializer_75_IList;
+                userType.CollectionAdd = VectorAdd_75_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
