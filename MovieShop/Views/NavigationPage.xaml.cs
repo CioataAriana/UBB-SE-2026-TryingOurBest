@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml.Controls;
 using MovieShop.ViewModels;
+using MovieShop.Models;
 
 namespace MovieShop.Views
 {
@@ -38,18 +39,34 @@ namespace MovieShop.Views
             }
             else if (current == "Shop")
             {
-                // Shows the Red Banner
-                ContentArea.Content = new MovieShop.Views.MainPage();
+                ContentArea.Content = new MainPage();
             }
             else if (current == "SalesPage")
             {
-                ContentArea.Content = new MovieShop.Views.MovieShopView { ShowOnlySales = true };
+                ContentArea.Content = new MovieShop.Views.MovieShopView
+                {
+                    HostViewModel = ViewModel,
+                    ShowOnlySales = true
+                };
             }
             else if (current == "FullShop")
             {
-                // This is for your Navbar "Shop" button
-                ContentArea.Content = new MovieShop.Views.MovieShopView { ShowOnlySales = false };
+                ContentArea.Content = new MovieShop.Views.MovieShopView
+                {
+                    HostViewModel = ViewModel,
+                    ShowOnlySales = false
+                };
             }
         }
+
+        public void NavigateToMovieDetail(Movie movie, bool showOnlySales)
+        {
+            ContentArea.Content = new MovieShop.Views.MovieShopView
+            {
+                HostViewModel = ViewModel,
+                ShowOnlySales = showOnlySales,
+                InitialMovie = movie
+            };
+        }
     }
-    }
+}
