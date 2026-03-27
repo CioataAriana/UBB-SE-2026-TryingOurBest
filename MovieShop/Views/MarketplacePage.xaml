@@ -43,25 +43,32 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="models:Equipment">
-                        <Border Background="#252525" CornerRadius="12" Margin="10" Width="260" Height="380" 
+                        <Border Background="#252525" CornerRadius="12" Margin="10" Width="260" Height="400" 
                                 BorderBrush="#333333" BorderThickness="1">
                             <StackPanel Spacing="0">
-                                <Border CornerRadius="12,12,0,0" Height="180" Background="#1A1A1A">
-                                    <Image Source="{x:Bind ImageUrl, Mode=OneWay}" Stretch="UniformToFill" />
+                                <Border CornerRadius="12,12,0,0" Height="180" Background="#1A1A1A" IsHitTestVisible="False">
+                                    <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image.Source>
+                                            <Binding Path="ImageUrl" Mode="OneWay">
+                                                <Binding.FallbackValue>
+                                                    <BitmapImage UriSource="ms-appx:///Assets/StoreLogo.png"/>
+                                                </Binding.FallbackValue>
+                                            </Binding>
+                                        </Image.Source>
+                                    </Image>
                                 </Border>
 
                                 <StackPanel Padding="15" Spacing="8">
-                                    <TextBlock Text="{x:Bind Title}" FontSize="18" FontWeight="Bold" Foreground="White"
-                                               MaxLines="2" Height="48" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{x:Bind Title}" FontSize="16" FontWeight="Bold" Foreground="White"
+                                               MaxLines="2" Height="45" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"/>
 
                                     <TextBlock Text="{x:Bind Category}" FontSize="12" Foreground="Gray"/>
 
-                                    <TextBlock Text="{x:Bind Price, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:C}'}" 
-                                               FontSize="22" FontWeight="Bold" Foreground="#4CAF50"/>
+                                    <TextBlock Text="{x:Bind Price}" FontSize="22" FontWeight="Bold" Foreground="#4CAF50"/>
 
                                     <Button Content="VIEW DETAILS" Click="ViewDetails_Click" 
                                             HorizontalAlignment="Stretch" Background="#1565C0" Foreground="White"
-                                            CornerRadius="6" Margin="0,10,0,0"/>
+                                            CornerRadius="6" Margin="0,10,0,0" Height="35"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>

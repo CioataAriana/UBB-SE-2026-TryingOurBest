@@ -28,7 +28,7 @@ namespace MovieShop.ViewModels
             set { _newItemDesc = value; OnPropertyChanged(); ValidateForm(); }
         }
 
-        // 3. Input-ul de preț (ce scrie utilizatorul în căsuță)
+        // 3. Input-ul de pret (ce scrie utilizatorul în casuta)
         public string PriceInput
         {
             get => _priceInput;
