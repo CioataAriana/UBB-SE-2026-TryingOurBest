@@ -13,7 +13,6 @@ namespace MovieShop.Views
             this.InitializeComponent();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            // Load default page on startup
             NavigateToCurrentView();
         }
 

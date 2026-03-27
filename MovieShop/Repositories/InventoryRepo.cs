@@ -40,6 +40,90 @@ namespace MovieShop.Repositories
             return list;
         }
 
+        public void RemoveOwnedMovie(int userId, int movieId)
+        {
+            if (userId <= 0) return;
+
+            _db.OpenConnection();
+            using var tx = _db.Connection.BeginTransaction();
+            try
+            {
+                const string del = "DELETE FROM OwnedMovies WHERE UserID = @uid AND MovieID = @mid";
+                using (var cmd = new SqlCommand(del, _db.Connection, tx))
+                {
+                    cmd.Parameters.AddWithValue("@uid", userId);
+                    cmd.Parameters.AddWithValue("@mid", movieId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                const string insertTx = @"INSERT INTO Transactions (BuyerID, SellerID, EquipmentID, MovieID, EventID, Amount, Type, Status, Timestamp, ShippingAddress)
+                                          VALUES (@buyerID, NULL, NULL, @movieID, NULL, @amount, @type, @status, @timestamp, NULL)";
+                using (var cmd = new SqlCommand(insertTx, _db.Connection, tx))
+                {
+                    cmd.Parameters.AddWithValue("@buyerID", userId);
+                    cmd.Parameters.AddWithValue("@movieID", movieId);
+                    cmd.Parameters.AddWithValue("@amount", 0); // removal does not affect balance by default
+                    cmd.Parameters.AddWithValue("@type", "RemoveOwnedMovie");
+                    cmd.Parameters.AddWithValue("@status", "Completed");
+                    cmd.Parameters.AddWithValue("@timestamp", DateTime.Now);
+                    cmd.ExecuteNonQuery();
+                }
+
+                tx.Commit();
+            }
+            catch
+            {
+                tx.Rollback();
+                throw;
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public void RemoveOwnedTicket(int userId, int eventId)
+        {
+            if (userId <= 0) return;
+
+            _db.OpenConnection();
+            using var tx = _db.Connection.BeginTransaction();
+            try
+            {
+                const string del = "DELETE FROM OwnedTickets WHERE UserID = @uid AND EventID = @eid";
+                using (var cmd = new SqlCommand(del, _db.Connection, tx))
+                {
+                    cmd.Parameters.AddWithValue("@uid", userId);
+                    cmd.Parameters.AddWithValue("@eid", eventId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                const string insertTx = @"INSERT INTO Transactions (BuyerID, SellerID, EquipmentID, MovieID, EventID, Amount, Type, Status, Timestamp, ShippingAddress)
+                                          VALUES (@buyerID, NULL, NULL, NULL, @eventID, @amount, @type, @status, @timestamp, NULL)";
+                using (var cmd = new SqlCommand(insertTx, _db.Connection, tx))
+                {
+                    cmd.Parameters.AddWithValue("@buyerID", userId);
+                    cmd.Parameters.AddWithValue("@eventID", eventId);
+                    cmd.Parameters.AddWithValue("@amount", 0);
+                    cmd.Parameters.AddWithValue("@type", "RemoveOwnedTicket");
+                    cmd.Parameters.AddWithValue("@status", "Completed");
+                    cmd.Parameters.AddWithValue("@timestamp", DateTime.Now);
+                    cmd.ExecuteNonQuery();
+                }
+
+                tx.Commit();
+            }
+            catch
+            {
+                tx.Rollback();
+                throw;
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         public List<MovieEvent> GetOwnedTickets(int userId)
         {
             var list = new List<MovieEvent>();

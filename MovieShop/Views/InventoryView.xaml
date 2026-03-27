@@ -39,6 +39,7 @@
                                         <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"/>
                                     </Border>
                                     <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" MaxLines="2" TextWrapping="Wrap"/>
+                                    <Button Content="Remove" HorizontalAlignment="Right" Click="RemoveMovie_Click" Margin="0,4,0,0"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -63,6 +64,7 @@
                                     <TextBlock Text="{Binding Title}" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap"/>
                                     <TextBlock Text="{Binding DisplayDate}" Foreground="#CCCCCC" FontSize="12"/>
                                     <TextBlock Text="{Binding DisplayTicketPrice}" Foreground="#1DB954" FontWeight="SemiBold"/>
+                                    <Button Content="Remove" HorizontalAlignment="Right" Click="RemoveTicket_Click" Margin="0,8,0,0"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

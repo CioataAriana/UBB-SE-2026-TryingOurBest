@@ -141,19 +141,81 @@ namespace MovieShop.Views;
             Frame.GoBack();
     }
 
-    private void BuyTicket_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private async void BuyTicket_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        // sender's DataContext should be MovieEvent from the ItemTemplate
         if (sender is Microsoft.UI.Xaml.FrameworkElement fe && fe.DataContext is MovieEvent me)
         {
-            // If user not logged in, don't navigate to buy page (no login flow requested)
             if (!Models.SessionManager.IsLoggedIn)
             {
-                // Optionally show a message inline in the events list - for now do nothing
-                return;
+                var dlg = new ContentDialog
+                {
+                    Title = "Sign in",
+                    Content = "Please sign in to continue.",
+                    PrimaryButtonText = "Sign in",
+                    CloseButtonText = "Cancel",
+                    XamlRoot = XamlRoot
+                };
+
+                if (await dlg.ShowAsync() != ContentDialogResult.Primary)
+                    return;
+
+                Models.SessionManager.CurrentUserID = 1;
+                try
+                {
+                    Models.SessionManager.CurrentUserBalance = new Repositories.UserRepo().GetBalance(1);
+                }
+                catch
+                {
+                    Models.SessionManager.CurrentUserBalance = 0m;
+                }
+                UpdateBuyButtons();
             }
 
-            Frame?.Navigate(typeof(BuyTicketPage), me.ID);
+            try
+            {
+                new EventRepo().PurchaseTicket(Models.SessionManager.CurrentUserID, me.ID);
+
+                Models.SessionManager.CurrentUserBalance = new Repositories.UserRepo().GetBalance(Models.SessionManager.CurrentUserID);
+                UpdateBuyButtons();
+
+                var dialog = new ContentDialog
+                {
+                    Title = "Purchase successful",
+                    Content = $"Ticket for '{me.Title}' purchased and added to your library.",
+                    CloseButtonText = "OK",
+                    XamlRoot = XamlRoot
+                };
+
+                await dialog.ShowAsync();
+
+                if (this.XamlRoot?.Content is NavigationPage navPage)
+                {
+                    navPage.ViewModel.RefreshWallet();
+                    navPage.ViewModel.CurrentViewModel = "Inventory";
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                var err = new ContentDialog
+                {
+                    Title = "Cannot complete purchase",
+                    Content = ex.Message,
+                    CloseButtonText = "OK",
+                    XamlRoot = XamlRoot
+                };
+                await err.ShowAsync();
+            }
+            catch (Exception ex)
+            {
+                var err = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "An unexpected error occurred: " + ex.Message,
+                    CloseButtonText = "OK",
+                    XamlRoot = XamlRoot
+                };
+                await err.ShowAsync();
+            }
         }
     }
 }

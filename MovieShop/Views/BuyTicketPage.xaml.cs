@@ -32,10 +32,8 @@ namespace MovieShop.Views
             if (_event == null)
                 return;
 
-            // bind x:Bind expects these properties on the Page's DataContext; we set them on the page for x:Bind
             this.DataContext = _event;
 
-            // update UI state
             UpdateButtonState();
         }
 
@@ -44,7 +42,6 @@ namespace MovieShop.Views
             var loggedIn = Models.SessionManager.IsLoggedIn;
             var balance = Models.SessionManager.CurrentUserBalance;
 
-            // If logged in, refresh balance from DB to ensure UI validation is accurate
             if (loggedIn)
             {
                 try
@@ -54,13 +51,11 @@ namespace MovieShop.Views
                 }
                 catch
                 {
-                    // ignore DB errors here; leave balance as-is
                 }
             }
 
             if (!loggedIn)
             {
-                // When user is not logged in, disable purchasing (no login flow here)
                 ConfirmButton.IsEnabled = false;
                 InsufficientText.Text = "You must be signed in to purchase.";
                 InsufficientText.Visibility = Visibility.Visible;
@@ -92,7 +87,6 @@ namespace MovieShop.Views
 
             if (!Models.SessionManager.IsLoggedIn)
             {
-                // show a simple login dialog
                 var dlg = new ContentDialog
                 {
                     Title = "Sign in",
@@ -105,7 +99,6 @@ namespace MovieShop.Views
                 if (await dlg.ShowAsync() != ContentDialogResult.Primary)
                     return;
 
-                // For demo purposes set session
                 Models.SessionManager.CurrentUserID = 1;
                 Models.SessionManager.CurrentUserBalance = new Repositories.UserRepo().GetBalance(1);
                 UpdateButtonState();
@@ -114,9 +107,9 @@ namespace MovieShop.Views
 
             try
             {
-                new EventRepo().PurchaseTicket(Models.SessionManager.CurrentUserID, _event.ID);
+                // Run the DB work on a background thread to avoid blocking the UI thread
+                await System.Threading.Tasks.Task.Run(() => new EventRepo().PurchaseTicket(Models.SessionManager.CurrentUserID, _event.ID));
 
-                // refresh session balance
                 Models.SessionManager.CurrentUserBalance = new Repositories.UserRepo().GetBalance(Models.SessionManager.CurrentUserID);
                 UpdateButtonState();
 
@@ -130,9 +123,9 @@ namespace MovieShop.Views
 
                 await dialog.ShowAsync();
 
-                // Navigate to Inventory so the user can see the purchased ticket
                 if (this.XamlRoot?.Content is NavigationPage navPage)
                 {
+                    navPage.ViewModel.RefreshWallet();
                     navPage.ViewModel.CurrentViewModel = "Inventory";
                 }
             }

@@ -36,8 +36,8 @@ namespace MovieShop.ViewModels
             set
             {
                 _saleID = value;
-                OnPropertyChanged(); //announces that SaleID changed
-                OnPropertyChanged(nameof(IsSaleActive)); //announces that IsSaleActive also changed
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSaleActive));
                 OnPropertyChanged(nameof(DisplayPrice));
             }
         }
@@ -69,7 +69,6 @@ namespace MovieShop.ViewModels
             }
         }
 
-        //bool prop returns true during active sale
         public bool IsSaleActive
         {
             get
@@ -83,7 +82,6 @@ namespace MovieShop.ViewModels
 
         public decimal DisplayPrice => IsSaleActive ? SalePrice : BasePrice;
 
-        //task 46
 
         public void RevertToOriginalPrice()
         {

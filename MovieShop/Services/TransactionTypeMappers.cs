@@ -4,7 +4,6 @@ namespace MovieShop.Services
 {
     public static class TransactionTypeMapper
     {
-        // --- Type Mapping ---
         public static string ToDisplayString(string type)
         {
             return type switch
@@ -18,7 +17,6 @@ namespace MovieShop.Services
             };
         }
 
-        // --- Status Mapping ---
         public static string StatusToDisplayString(string status)
         {
             return status switch
@@ -30,7 +28,6 @@ namespace MovieShop.Services
             };
         }
 
-        // --- Amount Formatting ---
         public static string FormatAmount(decimal amount)
         {
             return amount >= 0

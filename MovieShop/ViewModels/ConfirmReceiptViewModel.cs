@@ -12,7 +12,6 @@ namespace MovieShop.ViewModels
 
         private int _currentUserID;
 
-        // --- Transaction being confirmed ---
         private Transaction _transaction;
         public Transaction Transaction
         {
@@ -20,7 +19,6 @@ namespace MovieShop.ViewModels
             set { _transaction = value; OnPropertyChanged(nameof(Transaction)); }
         }
 
-        // --- Seller balance (will increase after confirmation) ---
         private decimal _sellerBalance;
         public decimal SellerBalance
         {
@@ -28,7 +26,6 @@ namespace MovieShop.ViewModels
             set { _sellerBalance = value; OnPropertyChanged(nameof(SellerBalance)); }
         }
 
-        // --- Feedback Messages ---
         private string _errorMessage = string.Empty;
         public string ErrorMessage
         {
@@ -43,7 +40,6 @@ namespace MovieShop.ViewModels
             set { _successMessage = value; OnPropertyChanged(nameof(SuccessMessage)); }
         }
 
-        // --- Visibility ---
         private bool _isConfirmButtonVisible;
         public bool IsConfirmButtonVisible
         {
@@ -58,25 +54,21 @@ namespace MovieShop.ViewModels
             set { _isSuccessVisible = value; OnPropertyChanged(nameof(IsSuccessVisible)); }
         }
 
-        // --- Commands ---
         public IRelayCommand ConfirmReceiptCommand { get; }
         public IRelayCommand DismissSuccessCommand { get; }
 
-        // --- Constructor ---
         public ConfirmReceiptViewModel(int userID, Transaction transaction, decimal sellerBalance)
         {
             _currentUserID = userID;
             _transaction = transaction;
             _sellerBalance = sellerBalance;
 
-            // Only show confirm button if transaction is still pending
             IsConfirmButtonVisible = transaction.Status == "Pending";
 
             ConfirmReceiptCommand = new RelayCommand(ConfirmReceipt);
             DismissSuccessCommand = new RelayCommand(DismissSuccess);
         }
 
-        // --- Confirm Receipt Logic ---
         private void ConfirmReceipt()
         {
             ErrorMessage = string.Empty;
@@ -99,19 +91,15 @@ namespace MovieShop.ViewModels
                 return;
             }
 
-            // Release escrow — pay the seller
             ReleaseEscrowToSeller();
 
-            // Mark buyer transaction as Completed
             UpdateTransactionStatus("Completed");
 
-            // Hide confirm button since it's done
             IsConfirmButtonVisible = false;
             IsSuccessVisible = true;
             SuccessMessage = "Receipt confirmed! The seller has been paid.";
         }
 
-        // --- Helpers ---
         private void ReleaseEscrowToSeller()
         {
             if (Transaction.SellerID!= null)

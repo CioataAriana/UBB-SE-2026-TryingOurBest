@@ -12,10 +12,6 @@ namespace MovieShop.ViewModels
 {
     public class FlashSaleViewModel : INotifyPropertyChanged
     {
-        //DispatcherTimer because it runs on the UI Thread,
-        //which allows it to update the timerText
-        //every second without crashing the app.
-
         private DispatcherTimer _timer;
         private string _displayText;
         private string _timerText;
@@ -54,7 +50,6 @@ namespace MovieShop.ViewModels
             }
         }
 
-        // returns visible or collapsed based on IsActive
         public FlashSaleViewModel(DateTime saleEndTime, Action onExpired)
         {
             _onExpiredAction = onExpired;
@@ -69,13 +64,11 @@ namespace MovieShop.ViewModels
             IsActive = true;
 
 
-            //initialize DispatcherTimer
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += TimerTick;
             _timer.Start();
 
-            //Initial calculation
             UpdateCountdown();
         }
 
@@ -90,7 +83,6 @@ namespace MovieShop.ViewModels
 
             if (timeRemaining.TotalSeconds > 0)
             {
-                //DoD: TimerText property updates HH:MM::SS every second
 
                 DisplayText = "Flash sale";
                 TimerText = string.Format("{0:D2}:{1:D2}:{2:D2}",
