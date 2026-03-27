@@ -45,7 +45,19 @@ namespace MovieShop.Views
         public void UpdateBigBanner(string time, bool isActive)
         {
             BigTimerText.Text = time;
-            BigSaleBanner.Visibility = isActive ? Visibility.Visible : Visibility.Collapsed;
+
+            if (isActive)
+            {
+                BigSaleBanner.Visibility = Visibility.Visible;
+                BigSaleBanner.Height = double.NaN;
+                BigSaleBanner.Margin = new Thickness(0, 0, 0, 20);
+            }
+            else
+            {
+                BigSaleBanner.Visibility = Visibility.Collapsed;
+                BigSaleBanner.Height = 0;
+                BigSaleBanner.Margin = new Thickness(0);
+            }
         }
 
         private void DiscoverButton_Click(object sender, RoutedEventArgs e)
