@@ -20,7 +20,6 @@ namespace MovieShop.ViewModels
         {
             get
             {
-                // Aici poți returna balanța reală dacă ai un WalletManager în MovieShop
                 return 5000.00m;
             }
         }
@@ -32,7 +31,6 @@ namespace MovieShop.ViewModels
 
         public void LoadData()
         {
-            // Apelăm metoda FetchAvailableEquipment din noul repo
             var data = _repository.FetchAvailableEquipment() ?? new List<Equipment>();
             _allOriginalItems = data;
 
@@ -41,7 +39,6 @@ namespace MovieShop.ViewModels
 
         public void FilterByCategory(string? category)
         {
-            // Logica de filtrare rămâne identică
             var filtered = string.IsNullOrEmpty(category) || category == "All"
                 ? _allOriginalItems
                 : _allOriginalItems.Where(x => x.Category == category).ToList();
@@ -59,7 +56,6 @@ namespace MovieShop.ViewModels
                     AvailableItems.Add(item);
                 }
             }
-            // Notificăm interfața că lista s-a schimbat
             OnPropertyChanged(nameof(AvailableItems));
         }
 
@@ -69,7 +65,6 @@ namespace MovieShop.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        // Verificăm sesiunea folosind SessionManager-ul din MovieShop
         public string StatusMessage => SessionManager.CurrentUserID == 0
             ? "Please log in to purchase equipment."
             : string.Empty;

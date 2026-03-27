@@ -25,7 +25,7 @@ namespace MovieMarketplace.ViewModels
             {
                 if (SelectedItem == null) return false;
                 bool isLoggedIn = SessionManager.CurrentUserID > 0;
-                decimal userBalance = 5000.00m; // placeholder pana la integrarea Wallet ului
+                decimal userBalance = 5000.00m; 
 
                 return isLoggedIn && userBalance >= SelectedItem.Price;
             }
