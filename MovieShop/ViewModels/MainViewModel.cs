@@ -63,7 +63,6 @@ namespace MovieShop.ViewModels
             var currentSales = _salesRepo.GetCurrentSales();
             var activeSale = currentSales.FirstOrDefault();
 
-            //if activeSale is null we pass datetime.now to keep it inactive
             DateTime expiry = activeSale?.EndTime ?? DateTime.Now;
 
             FlashSaleVM = new FlashSaleViewModel(expiry, () =>
@@ -74,7 +73,6 @@ namespace MovieShop.ViewModels
 
             MovieShop.Services.SaleService.CurrentSale = this.FlashSaleVM;
 
-            //----------------------------
 
             _walletViewModel = new WalletViewModel(_currentUserID, Balance);
             _walletViewModel.PropertyChanged += (s, e) =>
@@ -105,11 +103,6 @@ namespace MovieShop.ViewModels
             Balance = b;
             _walletViewModel.Balance = b;
         }
-
-        /// <summary>
-        /// Refreshes both the nav bar balance and the wallet view model (balance + transaction list).
-        /// Call this after any purchase so the wallet stays in sync regardless of which page is active.
-        /// </summary>
         public void RefreshWallet()
         {
             RefreshBalanceFromDatabase();

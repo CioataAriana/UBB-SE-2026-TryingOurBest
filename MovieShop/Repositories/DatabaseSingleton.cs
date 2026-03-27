@@ -16,7 +16,7 @@ namespace MovieShop.Repositories
 
         public SqlConnection Connection => _connection;
 
-        private DatabaseSingleton() => _connection = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={Helpers.GetProjectDirectory()}\\MovieShopDB.mdf;Integrated Security=True");
+        private DatabaseSingleton() => _connection = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={Helpers.GetProjectDirectory()}\\MovieShopDB.mdf;Integrated Security=True;MultipleActiveResultSets=True");
 
         public void OpenConnection()
         {
