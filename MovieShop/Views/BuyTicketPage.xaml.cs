@@ -107,7 +107,8 @@ namespace MovieShop.Views
 
             try
             {
-                new EventRepo().PurchaseTicket(Models.SessionManager.CurrentUserID, _event.ID);
+                // Run the DB work on a background thread to avoid blocking the UI thread
+                await System.Threading.Tasks.Task.Run(() => new EventRepo().PurchaseTicket(Models.SessionManager.CurrentUserID, _event.ID));
 
                 Models.SessionManager.CurrentUserBalance = new Repositories.UserRepo().GetBalance(Models.SessionManager.CurrentUserID);
                 UpdateButtonState();
