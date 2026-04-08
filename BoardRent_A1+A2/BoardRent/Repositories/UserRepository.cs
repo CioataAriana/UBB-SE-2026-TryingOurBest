@@ -99,11 +99,14 @@ namespace BoardRent.Repositories
         public async Task<List<User>> GetAllAsync(int pageNumber, int pageSize)
         {
             var userList = new List<User>();
+            const int PaginationOffsetAdjustment = 1;
+            int offsetCalculation = (pageNumber - PaginationOffsetAdjustment) * pageSize;
+
 
             using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
                 sqlCommand.CommandText = "SELECT * FROM [User] ORDER BY CreatedAt OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
-                sqlCommand.Parameters.AddWithValue("@Offset", (pageNumber - 1) * pageSize);
+                sqlCommand.Parameters.AddWithValue("@Offset", offsetCalculation);
                 sqlCommand.Parameters.AddWithValue("@PageSize", pageSize);
 
                 using (var dataReader = await sqlCommand.ExecuteReaderAsync())
