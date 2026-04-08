@@ -1,6 +1,6 @@
-﻿namespace BoardRent.DTOs
+﻿namespace BoardRent.DataTransferObjects
 {
-    public class LoginDto
+    public class LoginDataTransferObject
     {
         public string UsernameOrEmail { get; set; }
         public string Password { get; set; }

@@ -1,6 +1,6 @@
-﻿namespace BoardRent.DTOs
+﻿namespace BoardRent.DataTransferObjects
 {
-    public class RegisterDto
+    public class RegisterDataTransferObject
     {
         public string DisplayName { get; set; }
         public string Username { get; set; }

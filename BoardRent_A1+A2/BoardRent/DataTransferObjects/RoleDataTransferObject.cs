@@ -1,8 +1,8 @@
 using System;
 
-namespace BoardRent.DTOs
+namespace BoardRent.DataTransferObjects
 {
-    public class RoleDto
+    public class RoleDataTransferObject
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -1,4 +1,4 @@
-﻿using BoardRent.DTOs;
+﻿using BoardRent.DataTransferObjects;
 using BoardRent.Services;
 using BoardRent.Utils;
 using CommunityToolkit.Mvvm.Input;
@@ -143,7 +143,7 @@ namespace BoardRent.ViewModels
         {
             var userId = SessionContext.GetInstance().UserId;
 
-            var dto = new UserProfileDto
+            var dto = new UserProfileDataTransferObject
             {
                 Id = userId,
                 Username = Username,

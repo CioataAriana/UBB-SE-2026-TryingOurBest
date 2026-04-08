@@ -1,20 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BoardRent.Data;
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Repositories;
 using BoardRent.Utils;
 
 namespace BoardRent.Services
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+
+        // Named constants to eliminate magic numbers
+        private const int MinimumDisplayNameLength = 2;
+        private const int MaximumDisplayNameLength = 50;
+        private const int MaximumStreetNumberLength = 10;
+        private const string StandardUserRoleName = "Standard User";
+        private const string AvatarFolderName = "Avatars";
+        private const string ApplicationName = "BoardRent";
 
         public UserService(IUserRepository userRepository, IUnitOfWorkFactory unitOfWorkFactory)
         {
@@ -22,160 +29,209 @@ namespace BoardRent.Services
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public async Task<ServiceResult<UserProfileDto>> GetProfileAsync(Guid userId)
+        public async Task<ServiceResult<UserProfileDataTransferObject>> GetProfileAsync(Guid userId)
         {
-            using (var uow = _unitOfWorkFactory.Create())
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await uow.OpenAsync();
-                ((UserRepository)_userRepository).SetUnitOfWork(uow);
+                await unitOfWork.OpenAsync();
+                _userRepository.SetUnitOfWork(unitOfWork);
 
-                var user = await _userRepository.GetByIdAsync(userId);
-                if (user == null) throw new Exception("User not found");
-
-                Debug.WriteLine($"Avatar path: {user.AvatarUrl}");
-                Debug.WriteLine($"File exists: {File.Exists(user.AvatarUrl)}");
-
-                var firstRole = user.Roles?.FirstOrDefault();
-
-                return new ServiceResult<UserProfileDto>
+                var userEntity = await _userRepository.GetByIdAsync(userId);
+                if (userEntity == null)
                 {
-                    Data = new UserProfileDto
-                    {
-                        Id = user.Id,
-                        Username = user.Username,
-                        DisplayName = user.DisplayName,
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        AvatarUrl = user.AvatarUrl,
-                        Role = new RoleDto
-                        {
-                            Id = firstRole?.Id ?? Guid.Empty,
-                            Name = firstRole?.Name ?? "Standard User"
-                        },
-                        IsSuspended = user.IsSuspended,
-                        Country = user.Country,
-                        City = user.City,
-                        StreetName = user.StreetName,
-                        StreetNumber = user.StreetNumber
-                    }
-                };
+                    return ServiceResult<UserProfileDataTransferObject>.Fail("User not found.");
+                }
+
+                return ServiceResult<UserProfileDataTransferObject>.Ok(MapEntityToProfileDataTransferObject(userEntity));
             }
         }
 
-        public async Task<ServiceResult<bool>> UpdateProfileAsync(Guid userId, UserProfileDto dto)
+        public async Task<ServiceResult<bool>> UpdateProfileAsync(Guid userId, UserProfileDataTransferObject profileUpdateData)
         {
-            using (var uow = _unitOfWorkFactory.Create())
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await uow.OpenAsync();
-                ((UserRepository)_userRepository).SetUnitOfWork(uow);
+                await unitOfWork.OpenAsync();
+                _userRepository.SetUnitOfWork(unitOfWork);
 
-                var user = await _userRepository.GetByIdAsync(userId);
-
-                var errors = new List<string>();
-
-                if (string.IsNullOrWhiteSpace(dto.DisplayName) || dto.DisplayName.Length < 2 || dto.DisplayName.Length > 50)
-                    errors.Add("DisplayName|Display name must be between 2 and 50 characters long");
-
-                if (!string.IsNullOrWhiteSpace(dto.PhoneNumber))
+                var userEntity = await _userRepository.GetByIdAsync(userId);
+                if (userEntity == null)
                 {
-                    if (!System.Text.RegularExpressions.Regex.IsMatch(dto.PhoneNumber, @"^\+?\d{7,15}$"))
-                        errors.Add("PhoneNumber|Phone number format is invalid");
+                    return ServiceResult<bool>.Fail("User not found.");
                 }
 
-                if (!string.IsNullOrWhiteSpace(dto.StreetNumber) && dto.StreetNumber.Length > 10)
-                    errors.Add("StreetNumber|Street number must be a valid value");
+                var validationErrors = ValidateProfileDetails(profileUpdateData);
 
-                if (!string.IsNullOrWhiteSpace(dto.Email) && dto.Email != user.Email)
+                // Business Logic: Verify email uniqueness if it has been changed
+                if (!string.IsNullOrWhiteSpace(profileUpdateData.Email) && profileUpdateData.Email != userEntity.Email)
                 {
-                    var existingEmail = await _userRepository.GetByEmailAsync(dto.Email);
-                    if (existingEmail != null && existingEmail.Id != userId)
-                        errors.Add("Email|This email address is already taken by another account");
+                    var userWithDuplicateEmail = await _userRepository.GetByEmailAsync(profileUpdateData.Email);
+                    if (userWithDuplicateEmail != null && userWithDuplicateEmail.Id != userId)
+                    {
+                        validationErrors.Add("Email|This email address is already taken by another account.");
+                    }
                 }
 
-                if (errors.Any())
-                    return ServiceResult<bool>.Fail(string.Join(";", errors));
+                if (validationErrors.Any())
+                {
+                    return ServiceResult<bool>.Fail(string.Join(";", validationErrors));
+                }
 
-                user.DisplayName = dto.DisplayName;
-                user.Email = dto.Email;
-                user.PhoneNumber = dto.PhoneNumber;
-                user.Country = dto.Country;
-                user.City = dto.City;
-                user.StreetName = dto.StreetName;
-                user.StreetNumber = dto.StreetNumber;
-                user.UpdatedAt = DateTime.UtcNow;
+                ApplyProfileUpdatesToEntity(userEntity, profileUpdateData);
+                await _userRepository.UpdateAsync(userEntity);
 
-                await _userRepository.UpdateAsync(user);
                 return ServiceResult<bool>.Ok(true);
             }
         }
 
         public async Task<ServiceResult<bool>> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
         {
-            using (var uow = _unitOfWorkFactory.Create())
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await uow.OpenAsync();
-                ((UserRepository)_userRepository).SetUnitOfWork(uow);
+                await unitOfWork.OpenAsync();
+                _userRepository.SetUnitOfWork(unitOfWork);
 
-                var user = await _userRepository.GetByIdAsync(userId);
-                if (user == null)
-                    return ServiceResult<bool>.Fail("User not found");
+                var userEntity = await _userRepository.GetByIdAsync(userId);
+                if (userEntity == null)
+                {
+                    return ServiceResult<bool>.Fail("User not found.");
+                }
 
-                if (!PasswordHasher.VerifyPassword(currentPassword, user.PasswordHash))
-                    return ServiceResult<bool>.Fail("Current password is incorrect");
+                if (!PasswordHasher.VerifyPassword(currentPassword, userEntity.PasswordHash))
+                {
+                    return ServiceResult<bool>.Fail("Current password is incorrect.");
+                }
 
-                var (pwValid, pwError) = PasswordValidator.Validate(newPassword);
-                if (!pwValid)
-                    return ServiceResult<bool>.Fail(pwError);
+                var (isPasswordValid, passwordErrorMessage) = PasswordValidator.Validate(newPassword);
+                if (!isPasswordValid)
+                {
+                    return ServiceResult<bool>.Fail(passwordErrorMessage);
+                }
 
-                user.PasswordHash = PasswordHasher.HashPassword(newPassword);
-                user.UpdatedAt = DateTime.UtcNow;
+                userEntity.PasswordHash = PasswordHasher.HashPassword(newPassword);
+                userEntity.UpdatedAt = DateTime.UtcNow;
 
-                await _userRepository.UpdateAsync(user);
+                await _userRepository.UpdateAsync(userEntity);
 
+                // Clear session context to force re-authentication as per requirement UM-S04
                 SessionContext.GetInstance().Clear();
 
                 return ServiceResult<bool>.Ok(true);
             }
         }
 
-        public async Task<string> UploadAvatarAsync(Guid userId, string filePath)
+        public async Task<string> UploadAvatarAsync(Guid userId, string sourceFilePath)
         {
-            using (var uow = _unitOfWorkFactory.Create())
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await uow.OpenAsync();
-                ((UserRepository)_userRepository).SetUnitOfWork(uow);
+                await unitOfWork.OpenAsync();
+                _userRepository.SetUnitOfWork(unitOfWork);
 
-                var user = await _userRepository.GetByIdAsync(userId);
-                if (user == null) throw new Exception("User not found");
+                var userEntity = await _userRepository.GetByIdAsync(userId);
+                if (userEntity == null)
+                {
+                    throw new Exception("User not found.");
+                }
 
-                var fileName = $"{userId}_{Path.GetFileName(filePath)}";
-                var saveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BoardRent", "Avatars");
-                Directory.CreateDirectory(saveFolder);
-                var savePath = Path.Combine(saveFolder, fileName);
-                File.Copy(filePath, savePath, true);
+                string fileName = $"{userId}_{Path.GetFileName(sourceFilePath)}";
+                string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string saveFolderPath = Path.Combine(localApplicationData, ApplicationName, AvatarFolderName);
 
-                user.AvatarUrl = savePath;
-                user.UpdatedAt = DateTime.UtcNow;
-                await _userRepository.UpdateAsync(user);
+                Directory.CreateDirectory(saveFolderPath);
+                string destinationPath = Path.Combine(saveFolderPath, fileName);
 
-                return savePath;
+                File.Copy(sourceFilePath, destinationPath, true);
+
+                userEntity.AvatarUrl = destinationPath;
+                userEntity.UpdatedAt = DateTime.UtcNow;
+
+                await _userRepository.UpdateAsync(userEntity);
+
+                return destinationPath;
             }
         }
 
         public async Task RemoveAvatarAsync(Guid userId)
         {
-            using (var uow = _unitOfWorkFactory.Create())
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await uow.OpenAsync();
-                ((UserRepository)_userRepository).SetUnitOfWork(uow);
+                await unitOfWork.OpenAsync();
+                _userRepository.SetUnitOfWork(unitOfWork);
 
-                var user = await _userRepository.GetByIdAsync(userId);
-                if (user == null) throw new Exception("User not found");
+                var userEntity = await _userRepository.GetByIdAsync(userId);
+                if (userEntity == null)
+                {
+                    throw new Exception("User not found.");
+                }
 
-                user.AvatarUrl = null;
-                user.UpdatedAt = DateTime.UtcNow;
-                await _userRepository.UpdateAsync(user);
+                userEntity.AvatarUrl = null;
+                userEntity.UpdatedAt = DateTime.UtcNow;
+
+                await _userRepository.UpdateAsync(userEntity);
             }
+        }
+
+        private List<string> ValidateProfileDetails(UserProfileDataTransferObject profileData)
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(profileData.DisplayName) ||
+                profileData.DisplayName.Length < MinimumDisplayNameLength ||
+                profileData.DisplayName.Length > MaximumDisplayNameLength)
+            {
+                errors.Add("DisplayName|Display name must be between 2 and 50 characters long.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(profileData.PhoneNumber))
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(profileData.PhoneNumber, @"^\+?\d{7,15}$"))
+                {
+                    errors.Add("PhoneNumber|Phone number format is invalid.");
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(profileData.StreetNumber) && profileData.StreetNumber.Length > MaximumStreetNumberLength)
+            {
+                errors.Add("StreetNumber|Street number must be a valid value.");
+            }
+
+            return errors;
+        }
+
+        private void ApplyProfileUpdatesToEntity(Domain.User userEntity, UserProfileDataTransferObject profileUpdateData)
+        {
+            userEntity.DisplayName = profileUpdateData.DisplayName;
+            userEntity.Email = profileUpdateData.Email;
+            userEntity.PhoneNumber = profileUpdateData.PhoneNumber;
+            userEntity.Country = profileUpdateData.Country;
+            userEntity.City = profileUpdateData.City;
+            userEntity.StreetName = profileUpdateData.StreetName;
+            userEntity.StreetNumber = profileUpdateData.StreetNumber;
+            userEntity.UpdatedAt = DateTime.UtcNow;
+        }
+
+        private UserProfileDataTransferObject MapEntityToProfileDataTransferObject(Domain.User userEntity)
+        {
+            var primaryRole = userEntity.Roles?.FirstOrDefault();
+
+            return new UserProfileDataTransferObject
+            {
+                Id = userEntity.Id,
+                Username = userEntity.Username,
+                DisplayName = userEntity.DisplayName,
+                Email = userEntity.Email,
+                PhoneNumber = userEntity.PhoneNumber,
+                AvatarUrl = userEntity.AvatarUrl,
+                Role = new RoleDataTransferObject
+                {
+                    Id = primaryRole?.Id ?? Guid.Empty,
+                    Name = primaryRole?.Name ?? StandardUserRoleName
+                },
+                IsSuspended = userEntity.IsSuspended,
+                Country = userEntity.Country,
+                City = userEntity.City,
+                StreetName = userEntity.StreetName,
+                StreetNumber = userEntity.StreetNumber
+            };
         }
     }
 }

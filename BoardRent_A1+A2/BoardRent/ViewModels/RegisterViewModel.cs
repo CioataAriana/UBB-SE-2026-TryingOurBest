@@ -1,4 +1,4 @@
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Services;
 using BoardRent.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -62,7 +62,7 @@ namespace BoardRent.ViewModels
 
             IsLoading = true;
 
-            var registrationRequest = new RegisterDto
+            var registrationRequest = new RegisterDataTransferObject
             {
                 DisplayName = this.DisplayName,
                 Username = this.Username,

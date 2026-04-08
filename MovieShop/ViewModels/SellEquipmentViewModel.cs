@@ -27,7 +27,6 @@ namespace MovieShop.ViewModels
         }
 
 
-        // 3. Input-ul de pret (ce scrie utilizatorul în casuta)
         public string PriceInput
         {
             get => _priceInput;

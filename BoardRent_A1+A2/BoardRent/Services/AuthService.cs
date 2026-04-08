@@ -1,6 +1,6 @@
 using BoardRent.Data;
 using BoardRent.Domain;
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Repositories;
 using BoardRent.Utils;
 using System;
@@ -24,7 +24,7 @@ namespace BoardRent.Services
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public async Task<ServiceResult<bool>> RegisterAsync(RegisterDto registrationRequest)
+        public async Task<ServiceResult<bool>> RegisterAsync(RegisterDataTransferObject registrationRequest)
         {
             var validationErrors = new List<string>();
 
@@ -98,7 +98,7 @@ namespace BoardRent.Services
             return ServiceResult<bool>.Ok(true);
         }
 
-        public async Task<ServiceResult<UserProfileDto>> LoginAsync(LoginDto dto)
+        public async Task<ServiceResult<UserProfileDataTransferObject>> LoginAsync(LoginDataTransferObject dto)
         {
             using (var uow = _unitOfWorkFactory.Create())
             {
@@ -114,12 +114,12 @@ namespace BoardRent.Services
 
                 if (user == null)
                 {
-                    return ServiceResult<UserProfileDto>.Fail("Invalid username or password.");
+                    return ServiceResult<UserProfileDataTransferObject>.Fail("Invalid username or password.");
                 }
 
                 if (user.IsSuspended)
                 {
-                    return ServiceResult<UserProfileDto>.Fail("This account has been suspended. Please contact support.");
+                    return ServiceResult<UserProfileDataTransferObject>.Fail("This account has been suspended. Please contact support.");
                 }
 
                 var failedAttempt = await _failedLoginRepository.GetByUserIdAsync(user.Id);
@@ -129,7 +129,7 @@ namespace BoardRent.Services
                     {
                         var remaining = failedAttempt.LockedUntil.Value - DateTime.UtcNow;
                         int minutes = (int)Math.Ceiling(remaining.TotalMinutes);
-                        return ServiceResult<UserProfileDto>.Fail(
+                        return ServiceResult<UserProfileDataTransferObject>.Fail(
                             $"Account is locked due to too many failed attempts. Try again in {minutes} minute(s).");
                     }
                 }
@@ -137,7 +137,7 @@ namespace BoardRent.Services
                 if (!PasswordHasher.VerifyPassword(dto.Password, user.PasswordHash))
                 {
                     await _failedLoginRepository.IncrementAsync(user.Id);
-                    return ServiceResult<UserProfileDto>.Fail("Invalid username or password.");
+                    return ServiceResult<UserProfileDataTransferObject>.Fail("Invalid username or password.");
                 }
 
                 await _failedLoginRepository.ResetAsync(user.Id);
@@ -147,13 +147,13 @@ namespace BoardRent.Services
 
                 SessionContext.GetInstance().Populate(user, roleName);
 
-                var roleDto = new RoleDto
+                var roleDto = new RoleDataTransferObject
                 {
                     Id = firstRole?.Id ?? Guid.Empty,
                     Name = roleName
                 };
 
-                var profileDto = new UserProfileDto
+                var profileDto = new UserProfileDataTransferObject
                 {
                     Id = user.Id,
                     Username = user.Username,
@@ -169,7 +169,7 @@ namespace BoardRent.Services
                     StreetNumber = user.StreetNumber
                 };
 
-                return ServiceResult<UserProfileDto>.Ok(profileDto);
+                return ServiceResult<UserProfileDataTransferObject>.Ok(profileDto);
             }
         }
 

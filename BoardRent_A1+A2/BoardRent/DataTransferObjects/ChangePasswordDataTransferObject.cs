@@ -1,6 +1,6 @@
-﻿namespace BoardRent.DTOs
+﻿namespace BoardRent.DataTransferObjects
 {
-    public class ChangePasswordDto
+    public class ChangePasswordDataTransferObject
     {
         public string CurrentPassword { get; set; }
         public string NewPassword { get; set; }

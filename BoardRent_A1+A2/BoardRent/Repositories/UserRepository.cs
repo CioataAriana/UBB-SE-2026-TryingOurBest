@@ -16,149 +16,151 @@ namespace BoardRent.Repositories
             _unitOfWork = unitOfWork;
         }
 
-        private SqlConnection Connection => _unitOfWork.Connection;
+        private SqlConnection DatabaseConnection => _unitOfWork.Connection;
 
-        public async Task<User> GetByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(Guid identifier)
         {
-            User user = null;
+            User userEntity = null;
 
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM [User] WHERE Id = @Id";
-                command.Parameters.AddWithValue("@Id", id);
+                sqlCommand.CommandText = "SELECT * FROM [User] WHERE Id = @Identifier";
+                sqlCommand.Parameters.AddWithValue("@Identifier", identifier);
 
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var dataReader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    if (await reader.ReadAsync())
+                    if (await dataReader.ReadAsync())
                     {
-                        user = MapUser(reader);
+                        userEntity = MapDataReaderToUserEntity(dataReader);
                     }
                 }
             }
 
-            if (user != null)
+            if (userEntity != null)
             {
-                user.Roles = await LoadRolesAsync(user.Id);
+                userEntity.Roles = await LoadUserRolesAsync(userEntity.Id);
             }
 
-            return user;
+            return userEntity;
         }
 
         public async Task<User> GetByUsernameAsync(string username)
         {
-            User user = null;
+            User userEntity = null;
 
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM [User] WHERE Username = @Username";
-                command.Parameters.AddWithValue("@Username", username);
+                sqlCommand.CommandText = "SELECT * FROM [User] WHERE Username = @Username";
+                sqlCommand.Parameters.AddWithValue("@Username", username);
 
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var dataReader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    if (await reader.ReadAsync())
+                    if (await dataReader.ReadAsync())
                     {
-                        user = MapUser(reader);
+                        userEntity = MapDataReaderToUserEntity(dataReader);
                     }
                 }
             }
 
-            if (user != null)
+            if (userEntity != null)
             {
-                user.Roles = await LoadRolesAsync(user.Id);
+                userEntity.Roles = await LoadUserRolesAsync(userEntity.Id);
             }
 
-            return user;
+            return userEntity;
         }
 
-        public async Task<User> GetByEmailAsync(string email)
+        public async Task<User> GetByEmailAsync(string emailAddress)
         {
-            User user = null;
+            User userEntity = null;
 
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM [User] WHERE Email = @Email";
-                command.Parameters.AddWithValue("@Email", email);
+                sqlCommand.CommandText = "SELECT * FROM [User] WHERE Email = @EmailAddress";
+                sqlCommand.Parameters.AddWithValue("@EmailAddress", emailAddress);
 
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var dataReader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    if (await reader.ReadAsync())
+                    if (await dataReader.ReadAsync())
                     {
-                        user = MapUser(reader);
+                        userEntity = MapDataReaderToUserEntity(dataReader);
                     }
                 }
             }
 
-            if (user != null)
+            if (userEntity != null)
             {
-                user.Roles = await LoadRolesAsync(user.Id);
+                userEntity.Roles = await LoadUserRolesAsync(userEntity.Id);
             }
 
-            return user;
+            return userEntity;
         }
 
-        public async Task<List<User>> GetAllAsync(int page, int pageSize)
+        public async Task<List<User>> GetAllAsync(int pageNumber, int pageSize)
         {
-            var users = new List<User>();
-            int offsetCalculation = (page - 1) * pageSize;
+            var userList = new List<User>();
+            const int PaginationOffsetAdjustment = 1;
+            int offsetCalculation = (pageNumber - PaginationOffsetAdjustment) * pageSize;
 
-            using (var command = Connection.CreateCommand())
+
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM [User] ORDER BY CreatedAt OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
-                command.Parameters.AddWithValue("@Offset", offsetCalculation);
-                command.Parameters.AddWithValue("@PageSize", pageSize);
+                sqlCommand.CommandText = "SELECT * FROM [User] ORDER BY CreatedAt OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+                sqlCommand.Parameters.AddWithValue("@Offset", offsetCalculation);
+                sqlCommand.Parameters.AddWithValue("@PageSize", pageSize);
 
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var dataReader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    while (await reader.ReadAsync())
+                    while (await dataReader.ReadAsync())
                     {
-                        users.Add(MapUser(reader));
+                        userList.Add(MapDataReaderToUserEntity(dataReader));
                     }
                 }
             }
 
-            foreach (var user in users)
+            foreach (var userEntity in userList)
             {
-                user.Roles = await LoadRolesAsync(user.Id);
+                userEntity.Roles = await LoadUserRolesAsync(userEntity.Id);
             }
 
-            return users;
+            return userList;
         }
 
-        public async Task AddAsync(User user)
+        public async Task AddAsync(User userEntity)
         {
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = @"
+                sqlCommand.CommandText = @"
                     INSERT INTO [User] (Id, Username, DisplayName, Email, PasswordHash, PhoneNumber, AvatarUrl, IsSuspended, CreatedAt, UpdatedAt, StreetName, StreetNumber, Country, City)
-                    VALUES (@Id, @Username, @DisplayName, @Email, @PasswordHash, @PhoneNumber, @AvatarUrl, @IsSuspended, @CreatedAt, @UpdatedAt, @StreetName, @StreetNumber, @Country, @City)";
+                    VALUES (@Identifier, @Username, @DisplayName, @EmailAddress, @PasswordHash, @PhoneNumber, @AvatarUrl, @IsSuspended, @CreatedAt, @UpdatedAt, @StreetName, @StreetNumber, @Country, @City)";
 
-                command.Parameters.AddWithValue("@Id", user.Id);
-                command.Parameters.AddWithValue("@Username", user.Username);
-                command.Parameters.AddWithValue("@DisplayName", user.DisplayName);
-                command.Parameters.AddWithValue("@Email", user.Email);
-                command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-                command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@AvatarUrl", user.AvatarUrl ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@IsSuspended", user.IsSuspended);
-                command.Parameters.AddWithValue("@CreatedAt", user.CreatedAt);
-                command.Parameters.AddWithValue("@UpdatedAt", user.UpdatedAt);
-                command.Parameters.AddWithValue("@StreetName", user.StreetName ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@StreetNumber", user.StreetNumber ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@Country", user.Country ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@City", user.City ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@Identifier", userEntity.Id);
+                sqlCommand.Parameters.AddWithValue("@Username", userEntity.Username);
+                sqlCommand.Parameters.AddWithValue("@DisplayName", userEntity.DisplayName);
+                sqlCommand.Parameters.AddWithValue("@EmailAddress", userEntity.Email);
+                sqlCommand.Parameters.AddWithValue("@PasswordHash", userEntity.PasswordHash);
+                sqlCommand.Parameters.AddWithValue("@PhoneNumber", userEntity.PhoneNumber ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@AvatarUrl", userEntity.AvatarUrl ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@IsSuspended", userEntity.IsSuspended);
+                sqlCommand.Parameters.AddWithValue("@CreatedAt", userEntity.CreatedAt);
+                sqlCommand.Parameters.AddWithValue("@UpdatedAt", userEntity.UpdatedAt);
+                sqlCommand.Parameters.AddWithValue("@StreetName", userEntity.StreetName ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@StreetNumber", userEntity.StreetNumber ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@Country", userEntity.Country ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@City", userEntity.City ?? (object)DBNull.Value);
 
-                await command.ExecuteNonQueryAsync();
+                await sqlCommand.ExecuteNonQueryAsync();
             }
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateAsync(User userEntity)
         {
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = @"
+                sqlCommand.CommandText = @"
                     UPDATE [User] SET
                         DisplayName = @DisplayName,
-                        Email = @Email,
+                        Email = @EmailAddress,
                         PasswordHash = @PasswordHash,
                         PhoneNumber = @PhoneNumber,
                         AvatarUrl = @AvatarUrl,
@@ -168,87 +170,89 @@ namespace BoardRent.Repositories
                         StreetNumber = @StreetNumber,
                         Country = @Country,
                         City = @City
-                    WHERE Id = @Id";
+                    WHERE Id = @Identifier";
 
-                command.Parameters.AddWithValue("@Id", user.Id);
-                command.Parameters.AddWithValue("@DisplayName", user.DisplayName);
-                command.Parameters.AddWithValue("@Email", user.Email);
-                command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-                command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@AvatarUrl", user.AvatarUrl ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@IsSuspended", user.IsSuspended);
-                command.Parameters.AddWithValue("@UpdatedAt", user.UpdatedAt);
-                command.Parameters.AddWithValue("@StreetName", user.StreetName ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@StreetNumber", user.StreetNumber ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@Country", user.Country ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@City", user.City ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@Identifier", userEntity.Id);
+                sqlCommand.Parameters.AddWithValue("@DisplayName", userEntity.DisplayName);
+                sqlCommand.Parameters.AddWithValue("@EmailAddress", userEntity.Email);
+                sqlCommand.Parameters.AddWithValue("@PasswordHash", userEntity.PasswordHash);
+                sqlCommand.Parameters.AddWithValue("@PhoneNumber", userEntity.PhoneNumber ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@AvatarUrl", userEntity.AvatarUrl ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@IsSuspended", userEntity.IsSuspended);
+                sqlCommand.Parameters.AddWithValue("@UpdatedAt", userEntity.UpdatedAt);
+                sqlCommand.Parameters.AddWithValue("@StreetName", userEntity.StreetName ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@StreetNumber", userEntity.StreetNumber ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@Country", userEntity.Country ?? (object)DBNull.Value);
+                sqlCommand.Parameters.AddWithValue("@City", userEntity.City ?? (object)DBNull.Value);
 
-                await command.ExecuteNonQueryAsync();
+                await sqlCommand.ExecuteNonQueryAsync();
             }
         }
 
-        public async Task AddRoleAsync(Guid userId, string roleName)
+        public async Task AddRoleAsync(Guid identifier, string roleName)
         {
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = @"
-                    DECLARE @RoleId UNIQUEIDENTIFIER = (SELECT Id FROM Role WHERE Name = @RoleName);
-                    IF @RoleId IS NOT NULL AND NOT EXISTS (SELECT 1 FROM UserRoles WHERE UserId = @UserId AND RoleId = @RoleId)
-                        INSERT INTO UserRoles (UserId, RoleId) VALUES (@UserId, @RoleId);";
-                command.Parameters.AddWithValue("@UserId", userId);
-                command.Parameters.AddWithValue("@RoleName", roleName);
+                sqlCommand.CommandText = @"
+                    DECLARE @RoleIdentifier UNIQUEIDENTIFIER = (SELECT Id FROM Role WHERE Name = @RoleName);
+                    IF @RoleIdentifier IS NOT NULL AND NOT EXISTS (SELECT 1 FROM UserRoles WHERE UserId = @UserIdentifier AND RoleId = @RoleIdentifier)
+                        INSERT INTO UserRoles (UserId, RoleId) VALUES (@UserIdentifier, @RoleIdentifier);";
 
-                await command.ExecuteNonQueryAsync();
+                sqlCommand.Parameters.AddWithValue("@UserIdentifier", identifier);
+                sqlCommand.Parameters.AddWithValue("@RoleName", roleName);
+
+                await sqlCommand.ExecuteNonQueryAsync();
             }
         }
 
-        private async Task<List<Role>> LoadRolesAsync(Guid userId)
+        private async Task<List<Role>> LoadUserRolesAsync(Guid identifier)
         {
-            var roles = new List<Role>();
+            var roleList = new List<Role>();
 
-            using (var command = Connection.CreateCommand())
+            using (var sqlCommand = DatabaseConnection.CreateCommand())
             {
-                command.CommandText = @"
-                    SELECT Role.Id, Role.Name
-                    FROM Role
-                    INNER JOIN UserRoles ON UserRoles.RoleId = Role.Id
-                    WHERE UserRoles.UserId = @UserId";
-                command.Parameters.AddWithValue("@UserId", userId);
+                sqlCommand.CommandText = @"
+                    SELECT TargetRole.Id, TargetRole.Name
+                    FROM Role TargetRole
+                    INNER JOIN UserRoles PivotTable ON PivotTable.RoleId = TargetRole.Id
+                    WHERE PivotTable.UserId = @UserIdentifier";
 
-                using (var reader = await command.ExecuteReaderAsync())
+                sqlCommand.Parameters.AddWithValue("@UserIdentifier", identifier);
+
+                using (var dataReader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    while (await reader.ReadAsync())
+                    while (await dataReader.ReadAsync())
                     {
-                        roles.Add(new Role
+                        roleList.Add(new Role
                         {
-                            Id = reader.GetGuid(reader.GetOrdinal("Id")),
-                            Name = reader.GetString(reader.GetOrdinal("Name"))
+                            Id = dataReader.GetGuid(dataReader.GetOrdinal("Id")),
+                            Name = dataReader.GetString(dataReader.GetOrdinal("Name"))
                         });
                     }
                 }
             }
 
-            return roles;
+            return roleList;
         }
 
-        private User MapUser(SqlDataReader reader)
+        private User MapDataReaderToUserEntity(SqlDataReader dataReader)
         {
             return new User
             {
-                Id = reader.GetGuid(reader.GetOrdinal("Id")),
-                Username = reader.GetString(reader.GetOrdinal("Username")),
-                DisplayName = reader.GetString(reader.GetOrdinal("DisplayName")),
-                Email = reader.GetString(reader.GetOrdinal("Email")),
-                PasswordHash = reader.GetString(reader.GetOrdinal("PasswordHash")),
-                PhoneNumber = reader.IsDBNull(reader.GetOrdinal("PhoneNumber")) ? null : reader.GetString(reader.GetOrdinal("PhoneNumber")),
-                AvatarUrl = reader.IsDBNull(reader.GetOrdinal("AvatarUrl")) ? null : reader.GetString(reader.GetOrdinal("AvatarUrl")),
-                IsSuspended = reader.GetBoolean(reader.GetOrdinal("IsSuspended")),
-                CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
-                UpdatedAt = reader.GetDateTime(reader.GetOrdinal("UpdatedAt")),
-                StreetName = reader.IsDBNull(reader.GetOrdinal("StreetName")) ? null : reader.GetString(reader.GetOrdinal("StreetName")),
-                StreetNumber = reader.IsDBNull(reader.GetOrdinal("StreetNumber")) ? null : reader.GetString(reader.GetOrdinal("StreetNumber")),
-                Country = reader.IsDBNull(reader.GetOrdinal("Country")) ? null : reader.GetString(reader.GetOrdinal("Country")),
-                City = reader.IsDBNull(reader.GetOrdinal("City")) ? null : reader.GetString(reader.GetOrdinal("City")),
+                Id = dataReader.GetGuid(dataReader.GetOrdinal("Id")),
+                Username = dataReader.GetString(dataReader.GetOrdinal("Username")),
+                DisplayName = dataReader.GetString(dataReader.GetOrdinal("DisplayName")),
+                Email = dataReader.GetString(dataReader.GetOrdinal("Email")),
+                PasswordHash = dataReader.GetString(dataReader.GetOrdinal("PasswordHash")),
+                PhoneNumber = dataReader.IsDBNull(dataReader.GetOrdinal("PhoneNumber")) ? null : dataReader.GetString(dataReader.GetOrdinal("PhoneNumber")),
+                AvatarUrl = dataReader.IsDBNull(dataReader.GetOrdinal("AvatarUrl")) ? null : dataReader.GetString(dataReader.GetOrdinal("AvatarUrl")),
+                IsSuspended = dataReader.GetBoolean(dataReader.GetOrdinal("IsSuspended")),
+                CreatedAt = dataReader.GetDateTime(dataReader.GetOrdinal("CreatedAt")),
+                UpdatedAt = dataReader.GetDateTime(dataReader.GetOrdinal("UpdatedAt")),
+                StreetName = dataReader.IsDBNull(dataReader.GetOrdinal("StreetName")) ? null : dataReader.GetString(dataReader.GetOrdinal("StreetName")),
+                StreetNumber = dataReader.IsDBNull(dataReader.GetOrdinal("StreetNumber")) ? null : dataReader.GetString(dataReader.GetOrdinal("StreetNumber")),
+                Country = dataReader.IsDBNull(dataReader.GetOrdinal("Country")) ? null : dataReader.GetString(dataReader.GetOrdinal("Country")),
+                City = dataReader.IsDBNull(dataReader.GetOrdinal("City")) ? null : dataReader.GetString(dataReader.GetOrdinal("City")),
                 Roles = new List<Role>()
             };
         }

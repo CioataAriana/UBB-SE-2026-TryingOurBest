@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BoardRent.Data;
 using BoardRent.Domain;
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Repositories;
 using BoardRent.Utils;
 
@@ -29,10 +29,10 @@ namespace BoardRent.Services
             return session.IsLoggedIn && session.Role == "Administrator";
         }
 
-        public async Task<ServiceResult<List<UserProfileDto>>> GetAllUsersAsync(int page, int pageSize)
+        public async Task<ServiceResult<List<UserProfileDataTransferObject>>> GetAllUsersAsync(int page, int pageSize)
         {
             if (!IsAuthorized())
-                return ServiceResult<List<UserProfileDto>>.Fail("Unauthorized access.");
+                return ServiceResult<List<UserProfileDataTransferObject>>.Fail("Unauthorized access.");
 
             using (var uow = _unitOfWorkFactory.Create())
             {
@@ -42,7 +42,7 @@ namespace BoardRent.Services
 
                 var users = await _userRepository.GetAllAsync(page, pageSize);
 
-                var dtos = new List<UserProfileDto>();
+                var dtos = new List<UserProfileDataTransferObject>();
                 foreach (var u in users)
                 {
                     var firstRole = u.Roles?.FirstOrDefault();
@@ -51,7 +51,7 @@ namespace BoardRent.Services
                         && failedAttempt.LockedUntil.HasValue
                         && failedAttempt.LockedUntil.Value > DateTime.UtcNow;
 
-                    dtos.Add(new UserProfileDto
+                    dtos.Add(new UserProfileDataTransferObject
                     {
                         Id = u.Id,
                         Username = u.Username,
@@ -59,7 +59,7 @@ namespace BoardRent.Services
                         Email = u.Email,
                         PhoneNumber = u.PhoneNumber,
                         AvatarUrl = u.AvatarUrl,
-                        Role = new RoleDto
+                        Role = new RoleDataTransferObject
                         {
                             Id = firstRole?.Id ?? Guid.Empty,
                             Name = firstRole?.Name ?? "Standard User"
@@ -73,7 +73,7 @@ namespace BoardRent.Services
                     });
                 }
 
-                return ServiceResult<List<UserProfileDto>>.Ok(dtos);
+                return ServiceResult<List<UserProfileDataTransferObject>>.Ok(dtos);
             }
         }
 
