@@ -1,4 +1,4 @@
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Services;
 using BoardRent.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -38,7 +38,7 @@ namespace BoardRent.ViewModels
 
             IsLoading = true;
 
-            var loginDto = new LoginDto
+            var loginDto = new LoginDataTransferObject
             {
                 UsernameOrEmail = this.UsernameOrEmail,
                 Password = this.Password,

@@ -1,3 +1,4 @@
+using BoardRent.Data;
 using BoardRent.Domain;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,9 @@ namespace BoardRent.Repositories
 {
     public interface IUserRepository
     {
+        // expose the method to the Service layer
+        void SetUnitOfWork(IUnitOfWork unitOfWork);
+
         Task<User> GetByIdAsync(Guid id);
         Task<User> GetByUsernameAsync(string username);
         Task<User> GetByEmailAsync(string email);

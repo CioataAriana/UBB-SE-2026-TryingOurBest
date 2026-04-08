@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using BoardRent.DTOs;
+using BoardRent.DataTransferObjects;
 using BoardRent.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,14 +14,14 @@ namespace BoardRent.ViewModels
         private const int PageSize = 10;
 
         [ObservableProperty]
-        private ObservableCollection<UserProfileDto> users = new();
+        private ObservableCollection<UserProfileDataTransferObject> users = new();
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(SuspendUserCommand))]
         [NotifyCanExecuteChangedFor(nameof(UnsuspendUserCommand))]
         [NotifyCanExecuteChangedFor(nameof(ResetPasswordCommand))]
         [NotifyCanExecuteChangedFor(nameof(UnlockAccountCommand))]
-        private UserProfileDto selectedUser;
+        private UserProfileDataTransferObject selectedUser;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))]
@@ -45,7 +45,7 @@ namespace BoardRent.ViewModels
             var result = await _adminService.GetAllUsersAsync(CurrentPage, PageSize);
             if (result.Success && result.Data != null)
             {
-                Users = new ObservableCollection<UserProfileDto>(result.Data);
+                Users = new ObservableCollection<UserProfileDataTransferObject>(result.Data);
                 // Currently repository doesn't give TotalPages, assume 1 for now or dynamically calculate if data length < PageSize
                 // This is a placeholder since blocked on repositories
                 TotalPages = result.Data.Count == PageSize ? CurrentPage + 1 : CurrentPage; 

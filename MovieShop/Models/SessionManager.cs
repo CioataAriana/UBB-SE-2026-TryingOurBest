@@ -10,6 +10,6 @@ namespace MovieShop.Models
     {
         public static int CurrentUserID { get; set; } = 1;
         public static bool IsLoggedIn => CurrentUserID > 0;
-        public static decimal CurrentUserBalance { get; set; } = 5000.00m;
+        public static decimal CurrentUserBalance { get; set; }
     }
 }
